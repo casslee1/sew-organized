@@ -5,13 +5,22 @@ import App from './Routes/App';
 import Fabric from './Routes/Fabric';
 import Patterns from './Routes/Patterns';
 import Projects from './Routes/Projects';
+import AddFabric from './Routes/AddFabric';
+import AddPatterns from './Routes/AddPatterns';
+import AddProjects from './Routes/AddProjects';
 import About from './Routes/About';
+import Home from './Routes/Home';
 import './index.css';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "home",
+    element: <Home />,
   },
   {
     path: "fabric",
@@ -28,6 +37,18 @@ const router = createBrowserRouter([
   {
     path: "about",
     element: <About />,
+  },
+  {
+    path: "addpatterns",
+    element: <AddPatterns />,
+  },
+  {
+    path: "addprojects",
+    element: <AddProjects />,
+  },
+  {
+    path: "addfabric",
+    element: <AddFabric />,
   },
 ]);
 

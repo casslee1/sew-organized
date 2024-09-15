@@ -1,27 +1,24 @@
 import { Link } from "react-router-dom";
 import './App.css'
+import Button from '@mui/material/Button';
 
 const App = () => {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-          <Link to="fabric">fabric page</Link>
-          </li>
-          <li>
-          <Link to="patterns">patterns page</Link>
-          </li>
-          <li>
-          <Link to="projects">projects page</Link>
-          </li>
-          <li>
-          <Link to="about">about page</Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
+ <div>
+  <div>
+    <h1>Sew Organized</h1>
+  </div>
+  <div>
+    <h4>Stay on top of your sewing projects with Sew Organized! Track your fabric, patterns, and creative ideas all in one place—designed to help bring your next creation to life.</h4>
+  </div>
+  <div>
+    <Link to="home">
+      <Button variant="contained">Get Started</Button>
+    </Link>
+  </div>
+ </div>
   );
 };
 
 export default App;
+
