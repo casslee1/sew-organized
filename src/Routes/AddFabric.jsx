@@ -6,102 +6,151 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import { Link } from "react-router-dom";
 
+
 const AddFabric = () => {
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        for (let [key, value] of formData.entries()) {
+          console.log(`${key}: ${value}`);
+        }
+      };
+
     return (
         <div>
             <h1>Add Fabric Here</h1>
-            <FormControl>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <FormLabel>Add image</FormLabel>
+                    <TextField 
+                        name="fabricImage" 
+                        type="file" 
+                    />
                 </div>
                 <br />
-                <div>
-                    <FormLabel>Length</FormLabel>
-                    <TextField></TextField>
+                <div> {/*Switch type of input, maybe to dropdown, need to sort out how to do metric/imperial selection/switch */}
+                    <TextField 
+                        type="text" 
+                        label="Length" 
+                        name="length"
+                    />
                 </div>
                 <br />
-                <div>
-                    <FormLabel>Width</FormLabel>
-                    <TextField></TextField>
+                <div> {/*Switch type of input, maybe to dropdown, need to sort out how to do metric/imperial selection/switch */}
+                    <TextField 
+                        type="text" 
+                        label="Width" 
+                        name="width"
+                    />
                 </div>
                 <br />
                 <div>
                     <FormControl>
                         <FormLabel>Woven or knit?</FormLabel>
                         <RadioGroup>
-                            <FormControlLabel value="woven" control={<Radio />} label="Woven" />
-                            <FormControlLabel value="knit" control={<Radio />} label="Knit" />
+                            <FormControlLabel value="woven" name="wovenOrKnit" control={<Radio />} label="Woven" />
+                            <FormControlLabel value="knit" name="wovenOrKnit" control={<Radio />} label="Knit" />
                         </RadioGroup>
                     </FormControl>
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Fibre Content</FormLabel>
-                    <TextField></TextField>
+                    <TextField 
+                        type="text" 
+                        label="Fibre Content" 
+                        name="fibreContent"
+                    />                   
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Fabric Type</FormLabel>
-                    <TextField></TextField>
+                    <TextField 
+                        type="text" 
+                        label="Fabric Type" 
+                        name="fabricType"
+                    />
                 </div>
                 <br />
                 <div>
                     <FormControl>
                         <FormLabel>Solid or Print?</FormLabel>
                         <RadioGroup>
-                            <FormControlLabel value="solid" control={<Radio />} label="Solid" />
-                            <FormControlLabel value="print" control={<Radio />} label="Print" />
+                            <FormControlLabel value="solid" name="solidOrPrint" control={<Radio />} label="Solid" />
+                            <FormControlLabel value="print" name="solidOrPrint" control={<Radio />} label="Print" />
                         </RadioGroup>
                     </FormControl>
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Print type</FormLabel>
-                    <TextField></TextField>
+                    {/*maybe switch to checkboxes*/}
+                    <TextField 
+                        type="text" 
+                        label="Print Type" 
+                        name="printType"
+                    />
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Dominant colour</FormLabel>
-                    <TextField></TextField>
+                    {/*maybe switch to checkboxes*/}
+                    <TextField 
+                        type="text" 
+                        label="Dominant Colour" 
+                        name="dominantColour"
+                    />
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Purchase Date</FormLabel>
-                    <TextField type="date"></TextField>
+                    <FormLabel>Date of Purchase</FormLabel>
+                    <TextField 
+                        type="date"
+                        name="purchaseDate"
+                    />
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Purchased From</FormLabel>
-                    <TextField></TextField>
+                    <TextField 
+                        type="text" 
+                        label="Purchased From" 
+                        name="purchasedFrom"
+                    />
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Price</FormLabel>
-                    <TextField></TextField>
+                    <TextField 
+                        type="text" 
+                        label="Price" 
+                        name="price"
+                    />
                 </div>
                 <br />
                 <div>
                     <FormControl>
                         <FormLabel>Prewashed?</FormLabel>
                         <RadioGroup>
-                            <FormControlLabel value="prewashed" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="not prewashed" control={<Radio />} label="No" />
+                            <FormControlLabel value="yes" name="prewashed" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="no" name="prewashed" control={<Radio />} label="No" />
                         </RadioGroup>
                     </FormControl>
                 </div>
                 <br />
                 <div>
-                    <FormLabel>Notes</FormLabel>
-                    <TextField multiline></TextField>
+                    <TextField  
+                        multiline
+                        label="Notes" 
+                        name="notes" 
+                        rows={4}
+                    />
                 </div>
                 <br />
                 <div>
-                <Button variant="contained">Submit</Button>
+                <Button variant="contained" type="submit">Submit</Button>
+                <br />
+                <br />
                 <Link to="../fabric">
                     <Button variant="contained">Cancel</Button>
                 </Link>
                 </div>
-            </FormControl>
+            </form>
         </div>
     );
   };
