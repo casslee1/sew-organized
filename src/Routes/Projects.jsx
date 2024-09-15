@@ -10,7 +10,7 @@ const Projects = () => {
             <Button variant="contained">Add New Project</Button>
           </Link>
         </div>
-        <p>Cards showing existing projects in stash will go here</p>
+        <p>Cards showing existing projects will go here</p>
       </div>
     );
   };
