@@ -17,6 +17,14 @@ const AddFabric = () => {
         }
       };
 
+      const testServer = () => {
+      fetch('http://localhost:8080/test/:Username?User1')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      });
+      };
+
     return (
         <div>
             <h1>Add Fabric Here</h1>
@@ -147,7 +155,7 @@ const AddFabric = () => {
                 <br />
                 <br />
                 <Link to="../fabric">
-                    <Button variant="contained">Cancel</Button>
+                    <Button variant="contained" onClick={testServer} >Cancel</Button>
                 </Link>
                 </div>
             </form>
