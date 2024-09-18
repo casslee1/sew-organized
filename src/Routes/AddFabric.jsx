@@ -5,9 +5,12 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 
 const AddFabric = () => {
+
+    const [solidOrPrint, setSolidOrPrint] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -82,22 +85,28 @@ const AddFabric = () => {
                 <div>
                     <FormControl>
                         <FormLabel>Solid or Print?</FormLabel>
-                        <RadioGroup>
+                        <RadioGroup value={solidOrPrint}
+                            onChange={(event) => setSolidOrPrint(event.target.value)}>
+                            
+
                             <FormControlLabel value="solid" name="solidOrPrint" control={<Radio />} label="Solid" />
                             <FormControlLabel value="print" name="solidOrPrint" control={<Radio />} label="Print" />
                         </RadioGroup>
                     </FormControl>
                 </div>
                 <br />
+                {solidOrPrint === 'print' && (
                 <div>
+                    <div>
                     {/*maybe switch to checkboxes*/}
                     <TextField 
                         type="text" 
                         label="Print Type" 
                         name="printType"
                     />
-                </div>
-                <br />
+                    </div>
+                    <br />
+                </div>)}
                 <div>
                     {/*maybe switch to checkboxes*/}
                     <TextField 
