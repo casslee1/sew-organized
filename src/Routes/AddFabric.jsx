@@ -6,11 +6,21 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Checkbox from '@mui/material/Checkbox';
+import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
 
 
 const AddFabric = () => {
 
     const [solidOrPrint, setSolidOrPrint] = useState('');
+    const [colourSelection, setColourSelection] = useState('');
+    const [fibreType, setFibreType] = useState([]);
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -28,6 +38,32 @@ const AddFabric = () => {
       });
       };
 
+      const fibreTypesList = [
+        'Cotton',
+        'Linen',
+        'Silk',
+        'Wool',
+        'Elastane',
+        'Nylon',
+        'Polyester',
+        'Chitosante',
+        'Rayon',
+        'Viscose',
+        'Bamboo',
+        'Hemp',
+        'Ramie', 
+        'Other'
+      ];
+          
+      const handleFibreChange = (event) => {
+        const {
+          target: { value },
+        } = event;
+        setFibreType(
+          typeof value === 'string' ? value.split(',') : value,
+        )};
+          
+
     return (
         <div>
             <h1>Add Fabric Here</h1>
@@ -37,6 +73,16 @@ const AddFabric = () => {
                     <TextField 
                         name="fabricImage" 
                         type="file" 
+                    />
+                </div>
+                <br />
+                <div>
+                    <TextField
+                        required  
+                        multiline
+                        label="Description" 
+                        name="description" 
+                        rows={4}
                     />
                 </div>
                 <br />
@@ -57,6 +103,38 @@ const AddFabric = () => {
                 </div>
                 <br />
                 <div>
+                <FormControl sx={{ m: 1, width: 300 }}>
+                    <InputLabel>Fibre Type</InputLabel>
+                    <Select
+                        multiple
+                        value={fibreType}
+                        onChange={handleFibreChange}
+                        input={<OutlinedInput label="Fibre Type" />}
+                        renderValue={(selected) => selected.join(', ')
+                        }
+                    >
+                        {fibreTypesList.map((fibreTypesList) => (
+                            <MenuItem key={fibreTypesList} value={fibreTypesList}>
+                            <Checkbox checked={fibreType.includes(fibreTypesList)} />
+                            <ListItemText primary={fibreTypesList} />
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>                     
+                </div>
+                <br />
+                {fibreType.includes('Other') && (
+                <div>
+                    <div>
+                    <TextField 
+                        type="text" 
+                        label="Other Fibre" 
+                        name="otherFibreType"
+                    />
+                    </div>
+                    <br />
+                </div>)}
+                <div>
                     <FormControl>
                         <FormLabel>Woven or knit?</FormLabel>
                         <RadioGroup>
@@ -66,15 +144,7 @@ const AddFabric = () => {
                     </FormControl>
                 </div>
                 <br />
-                <div>
-                    <TextField 
-                        type="text" 
-                        label="Fibre Content" 
-                        name="fibreContent"
-                    />                   
-                </div>
-                <br />
-                <div>
+                <div>{/*maybe switch to dropdown*/}
                     <TextField 
                         type="text" 
                         label="Fabric Type" 
@@ -88,7 +158,6 @@ const AddFabric = () => {
                         <RadioGroup value={solidOrPrint}
                             onChange={(event) => setSolidOrPrint(event.target.value)}>
                             
-
                             <FormControlLabel value="solid" name="solidOrPrint" control={<Radio />} label="Solid" />
                             <FormControlLabel value="print" name="solidOrPrint" control={<Radio />} label="Print" />
                         </RadioGroup>
@@ -108,14 +177,46 @@ const AddFabric = () => {
                     <br />
                 </div>)}
                 <div>
-                    {/*maybe switch to checkboxes*/}
-                    <TextField 
-                        type="text" 
-                        label="Dominant Colour" 
-                        name="dominantColour"
-                    />
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel>Dominant Colour</InputLabel>
+                            <Select                    
+                                value={colourSelection}
+                                onChange={(event) => setColourSelection(event.target.value)}                       
+                            >
+                                <MenuItem value='red'>Red</MenuItem>
+                                <MenuItem value='orange'>Orange</MenuItem>
+                                <MenuItem value='yellow'>Yellow</MenuItem>
+                                <MenuItem value='green'>Green</MenuItem>
+                                <MenuItem value='turquoise'>Turquoise</MenuItem>
+                                <MenuItem value='blue'>Blue</MenuItem>
+                                <MenuItem value='navy'>Navy</MenuItem>
+                                <MenuItem value='purple'>Purple</MenuItem>
+                                <MenuItem value='pink'>Pink</MenuItem>
+                                <MenuItem value='white'>White</MenuItem>
+                                <MenuItem value='grey'>Grey</MenuItem>
+                                <MenuItem value='black'>Black</MenuItem>
+                                <MenuItem value='beige'>Beige</MenuItem>
+                                <MenuItem value='brown'>Brown</MenuItem>
+                                <MenuItem value='multicolour'>Multicolour</MenuItem>
+                                <MenuItem value='rainbow'>Rainbow</MenuItem>
+                                <MenuItem value='other'>Other</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
                 </div>
                 <br />
+                {colourSelection === 'other' && (
+                <div>
+                    <div>
+                    <TextField 
+                        type="text" 
+                        label="Other Colour" 
+                        name="otherColour"
+                    />
+                    </div>
+                    <br />
+                </div>)}
                 <div>
                     <FormLabel>Date of Purchase</FormLabel>
                     <TextField 
@@ -134,7 +235,7 @@ const AddFabric = () => {
                 <br />
                 <div>
                     <TextField 
-                        type="text" 
+                        type="number" 
                         label="Price" 
                         name="price"
                     />
