@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import NavBar from '../Components/NavBar/NavBar';
+import FabricCard from '../Components/FabricCard/FabricCard';
 import '../Styles/index.css';
 
 const Fabric = () => {
@@ -15,7 +16,9 @@ const Fabric = () => {
             <Button variant="contained">Add New Fabric</Button>
           </Link>
         </div>
-        <p>Cards showing existing fabric in stash will go here</p>
+        <div>
+          <FabricCard />
+        </div>
         </div>
       </div>
     );
