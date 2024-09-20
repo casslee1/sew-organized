@@ -10,7 +10,7 @@ import AddPatterns from './Routes/AddPatterns';
 import AddProjects from './Routes/AddProjects';
 import About from './Routes/About';
 import Home from './Routes/Home';
-import './index.css';
+import '../src/Styles/index.css';
 
 
 const router = createBrowserRouter([
