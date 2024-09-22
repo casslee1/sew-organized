@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import NavBar from '../Components/NavBar/NavBar';
 import '../Styles/index.css';
+import PatternCard from '../Components/PatternCard/PatternCard';
 
 const Patterns = () => {
     return (
@@ -15,7 +16,9 @@ const Patterns = () => {
             <Button variant="contained">Add New Patterns</Button>
           </Link>
         </div>
-        <p>Cards showing existing patterns in stash will go here</p>
+        <div>
+          <PatternCard/>
+        </div>
         </div>
       </div>
     );

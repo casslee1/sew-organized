@@ -10,6 +10,9 @@ import AddPatterns from './Routes/AddPatterns';
 import AddProjects from './Routes/AddProjects';
 import About from './Routes/About';
 import Home from './Routes/Home';
+import FabricEntry from './Routes/FabricEntry';
+import PatternEntry from './Routes/PatternEntry';
+import ProjectEntry from './Routes/ProjectEntry';
 import '../src/Styles/index.css';
 
 
@@ -49,6 +52,18 @@ const router = createBrowserRouter([
   {
     path: "addfabric",
     element: <AddFabric />,
+  },
+  {
+    path: "fabricentry",
+    element: <FabricEntry />,
+  },
+  {
+    path: "patternentry",
+    element: <PatternEntry />,
+  },
+  {
+    path: "projectentry",
+    element: <ProjectEntry />,
   },
 ]);
 

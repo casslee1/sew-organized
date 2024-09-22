@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import NavBar from '../Components/NavBar/NavBar';
 import '../Styles/index.css';
+import ProjectCard from '../Components/ProjectCard/ProjectCard';
 
 const Projects = () => {
     return (
@@ -15,7 +16,22 @@ const Projects = () => {
             <Button variant="contained">Add New Project</Button>
           </Link>
         </div>
-        <p>Cards showing existing projects will go here</p>
+        <div>
+          <h2>Planned</h2>
+          <ProjectCard />
+        </div>
+        <div>
+          <h2>In Progress</h2>
+          <ProjectCard />
+        </div>
+        <div>
+          <h2>Completed</h2>
+          <ProjectCard />
+        </div>
+        <div>
+          <h2>On Hold</h2>
+          <ProjectCard />
+        </div>
         </div>
       </div>
     );

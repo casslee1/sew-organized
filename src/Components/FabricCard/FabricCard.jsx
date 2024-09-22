@@ -3,11 +3,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
+import { Link } from "react-router-dom";
 
 export default function FabricCard() {
     return (
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to="/fabricentry">
           <CardMedia
             component="img"
             height="140"
