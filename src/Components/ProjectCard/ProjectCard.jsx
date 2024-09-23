@@ -17,10 +17,10 @@ export default function ProjectCard() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Project Entry
+              Pattern Company
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              This is a project entry
+              Pattern Name or Number
             </Typography>
           </CardContent>
         </CardActionArea>

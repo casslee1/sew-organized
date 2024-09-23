@@ -17,10 +17,10 @@ export default function PatternCard() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Pattern Entry
+              Pattern Company
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              This is a pattern entry
+              Pattern Name or Number
             </Typography>
           </CardContent>
         </CardActionArea>

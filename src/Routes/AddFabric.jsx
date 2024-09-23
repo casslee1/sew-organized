@@ -78,11 +78,9 @@ const AddFabric = () => {
                 <br />
                 <div>
                     <TextField
-                        required  
-                        multiline
-                        label="Description" 
-                        name="description" 
-                        rows={4}
+                        required 
+                        label="Name" 
+                        name="fabricName"
                     />
                 </div>
                 <br />

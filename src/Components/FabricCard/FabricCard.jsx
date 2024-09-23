@@ -17,10 +17,10 @@ export default function FabricCard() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Fabric Entry
+              Fabric Name
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              This is a fabric entry
+              TBD
             </Typography>
           </CardContent>
         </CardActionArea>
