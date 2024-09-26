@@ -12,6 +12,12 @@ const App = () => {
     <h4>Stay on top of your sewing projects with Sew Organized! Track your fabric, patterns, and projects all in one place—designed to help bring your next creation to life.</h4>
   </div>
   <div>
+    <Link to="about">
+      <Button variant="contained">Learn More</Button>
+    </Link>
+  </div>
+  <br />
+  <div>
     <Link to="fabric">
       <Button variant="contained">Get Started</Button>
     </Link>
