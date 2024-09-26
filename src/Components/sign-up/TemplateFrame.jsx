@@ -1,11 +1,7 @@
-import * as React from 'react';
-import {
-  createTheme,
-  ThemeProvider,
-  PaletteMode,
-  styled,
-} from '@mui/material/styles';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+import PropTypes from 'prop-types';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
@@ -32,22 +28,14 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   flex: '0 0 auto',
 }));
 
-interface TemplateFrameProps {
-  showCustomTheme: boolean;
-  toggleCustomTheme: (theme: boolean) => void;
-  mode: PaletteMode;
-  toggleColorMode: () => void;
-  children: React.ReactNode;
-}
-
-export default function TemplateFrame({
+function TemplateFrame({
   showCustomTheme,
   toggleCustomTheme,
   mode,
   toggleColorMode,
   children,
-}: TemplateFrameProps) {
-  const handleChange = (event: SelectChangeEvent) => {
+}) {
+  const handleChange = (event) => {
     toggleCustomTheme(event.target.value === 'custom');
   };
   const signUpTheme = createTheme(getSignUpTheme(mode));
@@ -113,3 +101,13 @@ export default function TemplateFrame({
     </ThemeProvider>
   );
 }
+
+TemplateFrame.propTypes = {
+  children: PropTypes.node,
+  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
+  showCustomTheme: PropTypes.bool.isRequired,
+  toggleColorMode: PropTypes.func.isRequired,
+  toggleCustomTheme: PropTypes.func.isRequired,
+};
+
+export default TemplateFrame;
