@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import './App.css'
 import Button from '@mui/material/Button';
 import SignUp from '../Components/sign-up/SignUp'
+import SignIn from '../Components/sign-in/SignIn'
 
 const App = () => {
   return (
@@ -22,9 +23,6 @@ const App = () => {
     <Link to="fabric">
       <Button variant="contained">Get Started</Button>
     </Link>
-  </div>
-  <div>
-    <SignUp />
   </div>
  </div>
   );
