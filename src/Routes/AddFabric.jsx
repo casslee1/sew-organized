@@ -13,6 +13,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
+import '../Styles/entryForm.css';
 
 
 const AddFabric = () => {
@@ -65,14 +66,15 @@ const AddFabric = () => {
           
 
     return (
-        <div>
-            <h1>Add Fabric Here</h1>
+        <div className="entryFormWrapper">
+            <h1>Add Fabric</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <FormLabel>Add image</FormLabel>
                     <TextField 
                         name="fabricImage" 
                         type="file" 
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -81,6 +83,7 @@ const AddFabric = () => {
                         required 
                         label="Name" 
                         name="fabricName"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -89,6 +92,7 @@ const AddFabric = () => {
                         type="text" 
                         label="Length" 
                         name="length"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -97,11 +101,12 @@ const AddFabric = () => {
                         type="text" 
                         label="Width" 
                         name="width"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
                 <div>
-                <FormControl sx={{ m: 1, width: 300 }}>
+                <FormControl sx={{width: 380 }}>
                     <InputLabel>Fibre Type</InputLabel>
                     <Select
                         multiple
@@ -128,6 +133,7 @@ const AddFabric = () => {
                         type="text" 
                         label="Other Fibre" 
                         name="otherFibreType"
+                        sx={{width: 380 }}
                     />
                     </div>
                     <br />
@@ -147,6 +153,7 @@ const AddFabric = () => {
                         type="text" 
                         label="Fabric Type" 
                         name="fabricType"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -170,6 +177,7 @@ const AddFabric = () => {
                         type="text" 
                         label="Print Type" 
                         name="printType"
+                        sx={{width: 380 }}
                     />
                     </div>
                     <br />
@@ -178,7 +186,8 @@ const AddFabric = () => {
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl fullWidth>
                             <InputLabel>Dominant Colour</InputLabel>
-                            <Select                    
+                            <Select
+                                sx={{width: 380 }}                    
                                 value={colourSelection}
                                 onChange={(event) => setColourSelection(event.target.value)}                       
                             >
@@ -211,6 +220,7 @@ const AddFabric = () => {
                         type="text" 
                         label="Other Colour" 
                         name="otherColour"
+                        sx={{width: 380 }}
                     />
                     </div>
                     <br />
@@ -220,6 +230,7 @@ const AddFabric = () => {
                     <TextField 
                         type="date"
                         name="purchaseDate"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -228,6 +239,7 @@ const AddFabric = () => {
                         type="text" 
                         label="Purchased From" 
                         name="purchasedFrom"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -236,6 +248,7 @@ const AddFabric = () => {
                         type="number" 
                         label="Price" 
                         name="price"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -255,13 +268,12 @@ const AddFabric = () => {
                         label="Notes" 
                         name="notes" 
                         rows={4}
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
-                <div>
+                <div className="buttonWrapper">
                 <Button variant="contained" type="submit">Submit</Button>
-                <br />
-                <br />
                 <Link to="../fabric">
                     <Button variant="contained" onClick={testServer} >Cancel</Button>
                 </Link>

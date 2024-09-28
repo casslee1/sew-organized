@@ -5,6 +5,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import { Link } from "react-router-dom";
+import '../Styles/entryForm.css';
+import Grid from '@mui/material/Grid2';
 
 const AddProjects = () => {
 
@@ -17,7 +19,7 @@ const AddProjects = () => {
       };
 
     return (
-        <div>
+        <div className="entryFormWrapper">
             <h1>Add Projects Here</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -25,6 +27,7 @@ const AddProjects = () => {
                     <TextField 
                         name="projectImage" 
                         type="file" 
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -42,10 +45,16 @@ const AddProjects = () => {
                     <FormControl>
                         <FormLabel>Project Status</FormLabel>
                         <RadioGroup>
+                        <Grid container spacing={10} >
+                        <Grid container item xs={6} direction="column" >
                             <FormControlLabel value="planned" name="projectStatus" control={<Radio />} label="Planned" />
                             <FormControlLabel value="inProgress" name="projectStatus" control={<Radio />} label="In Progress" />
+                            </Grid>
+                            <Grid container item xs={6} direction="column" >
                             <FormControlLabel value="completed" name="projectStatus" control={<Radio />} label="Completed" />
                             <FormControlLabel value="onHold" name="projectStatus" control={<Radio />} label="On Hold" />
+                            </Grid>
+                        </Grid>
                         </RadioGroup>
                     </FormControl>
                 </div>
@@ -65,6 +74,7 @@ const AddProjects = () => {
                     <TextField 
                         type="date"
                         name="deadline"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -73,6 +83,7 @@ const AddProjects = () => {
                     <TextField 
                         type="date"
                         name="startDate"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -81,6 +92,7 @@ const AddProjects = () => {
                     <TextField 
                         type="date"
                         name="completionDate"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -89,6 +101,7 @@ const AddProjects = () => {
                         type="text" 
                         label="Size made" 
                         name="sizeMade"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -97,6 +110,7 @@ const AddProjects = () => {
                         type="text" 
                         label="Length of fabric used" 
                         name="lengthOfFabricUsed"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -106,6 +120,7 @@ const AddProjects = () => {
                         label="Fitting Notes" 
                         name="fittingNotes" 
                         rows={4}
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -115,13 +130,12 @@ const AddProjects = () => {
                         label="Notes" 
                         name="notes" 
                         rows={4}
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
-                <div>
+                <div className="buttonWrapper">
                     <Button variant="contained" type="submit">Submit</Button>
-                    <br />
-                    <br />
                     <Link to="../projects">
                         <Button variant="contained">Cancel</Button>
                     </Link>

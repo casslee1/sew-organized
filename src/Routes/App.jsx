@@ -1,29 +1,32 @@
 import { Link } from "react-router-dom";
 import './App.css'
 import Button from '@mui/material/Button';
-import SignUp from '../Components/sign-up/SignUp'
-import SignIn from '../Components/sign-in/SignIn'
+/*import SignUp from '../Components/sign-up/SignUp'
+import SignIn from '../Components/sign-in/SignIn'*/
 
 const App = () => {
   return (
- <div>
-  <div>
-    <h1>Sew Organized</h1>
+ <div className='background'>
+  <div className='titleContainer'>
+    <div className='title'>
+      <h1>Sew Organized</h1>
+    </div>
   </div>
-  <div>
-    <h4>Stay on top of your sewing projects with Sew Organized! Track your fabric, patterns, and projects all in one place—designed to help bring your next creation to life.</h4>
+  <div className='descriptionContainer'>
+    <h3>Stay on top of your sewing projects with Sew Organized! Track your fabric, patterns, and projects all in one place—designed to help bring your next creation to life.</h3>
   </div>
-  <div>
-    <Link to="about">
-      <Button variant="contained">Learn More</Button>
-    </Link>
-  </div>
-  <br />
-  <div>
-    <Link to="fabric">
-      <Button variant="contained">Get Started</Button>
-    </Link>
-  </div>
+  <div className='buttonContainer'> 
+    <div>
+      <Link to="about">
+        <Button variant="contained" sx={{background:'#ff5938'}}>Learn More</Button>
+      </Link>
+    </div>
+    <div>
+      <Link to="fabric">
+        <Button variant="contained" sx={{background:'#ff5938'}}>Get Started</Button>
+      </Link>
+    </div>
+  </div> 
  </div>
   );
 };

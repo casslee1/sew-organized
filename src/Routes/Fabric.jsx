@@ -6,18 +6,18 @@ import '../Styles/index.css';
 
 const Fabric = () => {
     return (
-      <div>
+      <div className='background'>
         <div className="navWrapper">
           <NavBar/>
         </div>
         <div className="pageWrapper">
-        <div>
+        <div className='addButtonWrapper'>
           <Link to="../addfabric">
             <Button variant="contained">Add New Fabric</Button>
           </Link>
         </div>
-        <div>
-          <FabricCard />
+        <div className='cardWrapper'>
+          <FabricCard /> <FabricCard />
         </div>
         </div>
       </div>

@@ -13,6 +13,8 @@ import Box from '@mui/material/Box';
 import { useState } from "react";
 import Select from '@mui/material/Select';
 import ListSubheader from '@mui/material/ListSubheader';
+import '../Styles/entryForm.css';
+import Grid from '@mui/material/Grid2';
 
 
 const AddPatterns = () => {
@@ -30,7 +32,7 @@ const AddPatterns = () => {
       };
 
     return (
-        <div>
+        <div className="entryFormWrapper">
             <h1>Add Patterns Here</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -38,14 +40,16 @@ const AddPatterns = () => {
                     <TextField 
                         name="patternImage" 
                         type="file" 
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
                 <div>
-                    <Box sx={{ minWidth: 120 }}>
+                    <Box sx={{ minWidth: 120}}>
                         <FormControl fullWidth>
                             <InputLabel>Pattern Company</InputLabel>
                             <Select
+                                sx={{width: 380 }}
                                 required                    
                                 value={patternCompany}
                                 onChange={(event) => setPatternCompany(event.target.value)}                       
@@ -155,6 +159,7 @@ const AddPatterns = () => {
                         type="text" 
                         label="Other Pattern Company" 
                         name="otherPatternCompany"
+                        sx={{width: 380 }}
                     />
                     </div>
                     <br />
@@ -164,6 +169,7 @@ const AddPatterns = () => {
                         type="text" 
                         label="Pattern Number" 
                         name="patternNumber"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -172,6 +178,7 @@ const AddPatterns = () => {
                     type="text" 
                     label="Pattern Name" 
                     name="patternName"
+                    sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -180,6 +187,7 @@ const AddPatterns = () => {
                         type="text" 
                         label="Size Range" 
                         name="sizeRange"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -189,18 +197,24 @@ const AddPatterns = () => {
                         value={patternType}
                         onChange={(event) => setPatternType(event.target.value)}  
                     > 
+                    <Grid container spacing={2} >
+                    <Grid container item xs={6} direction="column" >
                         <FormControlLabel control={<Checkbox />} label="Top" value="top" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Skirt" value="skirt" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Dress" value="dress" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Trousers" value="trousers" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Shorts" value="shorts" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Jumpsuit" value="jumpsuit" name="patternType"/>
+                        </Grid>
+                        <Grid container item xs={6} direction="column" >
                         <FormControlLabel control={<Checkbox />} label="Outerwear" value="outerwear" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Swimwear" value="swimwear" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Under Garments" value="underGarments" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Bag" value="bag" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Quilt" value="quilt" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Other" value="other" name="patternType"/>
+                        </Grid>
+                        </Grid>
                     </FormGroup>
                 </div>
                 <br />
@@ -211,6 +225,7 @@ const AddPatterns = () => {
                         type="text" 
                         label="Other Pattern Type" 
                         name="otherPatternType"
+                        sx={{width: 380 }}
                     />
                     </div>
                     <br />
@@ -261,6 +276,7 @@ const AddPatterns = () => {
                             type="text" 
                             label="Size cut out?"
                             name="sizeCutOut"
+                            sx={{width: 380 }}
                         />
                     </div>
                     <br />
@@ -270,6 +286,7 @@ const AddPatterns = () => {
                         type="text" 
                         label="Fabric Requirements" 
                         name="fabricRequirements"
+                        sx={{width: 380 }}
                     />{/*Switch to dropdown menu*/}
                 </div>
                 <br />
@@ -278,6 +295,7 @@ const AddPatterns = () => {
                         type="text" 
                         label="Notions Required" 
                         name="notionsRequired"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -286,6 +304,7 @@ const AddPatterns = () => {
                     <TextField 
                         type="date" 
                         name="purchaseDate"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -294,6 +313,7 @@ const AddPatterns = () => {
                     <TextField 
                         type="number" 
                         name="yearReleased"
+                        sx={{width: 380 }}
                     />
                 
                 </div>
@@ -314,6 +334,7 @@ const AddPatterns = () => {
                         type="text" 
                         label="Recommended fabric types" 
                         name="recommendedFabricTypes"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
@@ -322,27 +343,27 @@ const AddPatterns = () => {
                         type="text" 
                         label="Purchased From" 
                         name="purchasedFrom"
+                        sx={{width: 380 }}
                     />
                 </div>
                 <br />
                 <div>
                     <TextField  
                         multiline
+                        sx={{width: 380 }}
                         label="Notes" 
                         name="notes" 
                         rows={4}>
                     </TextField>
                 </div>
                 <br />
-                <div>
+                <div className="buttonWrapper">
                     <Button 
                         variant="contained" 
                         type="submit"
                     >
                         Submit
                     </Button>
-                    <br />
-                    <br />
                     <Link to="../patterns">
                         <Button 
                             variant="contained"
