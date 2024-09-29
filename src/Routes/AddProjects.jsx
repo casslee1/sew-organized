@@ -20,7 +20,7 @@ const AddProjects = () => {
 
     return (
         <div className="entryFormWrapper">
-            <h1>Add Projects Here</h1>
+            <h1>Add a Projects</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <FormLabel>Add image</FormLabel>
@@ -45,7 +45,7 @@ const AddProjects = () => {
                     <FormControl>
                         <FormLabel>Project Status</FormLabel>
                         <RadioGroup>
-                        <Grid container spacing={10} >
+                        <Grid container rowSpacing={1} columnSpacing={6}>
                         <Grid container item xs={6} direction="column" >
                             <FormControlLabel value="planned" name="projectStatus" control={<Radio />} label="Planned" />
                             <FormControlLabel value="inProgress" name="projectStatus" control={<Radio />} label="In Progress" />

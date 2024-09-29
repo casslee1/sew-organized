@@ -33,7 +33,7 @@ const AddPatterns = () => {
 
     return (
         <div className="entryFormWrapper">
-            <h1>Add Patterns Here</h1>
+            <h1>Add a Pattern</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <FormLabel>Add image</FormLabel>

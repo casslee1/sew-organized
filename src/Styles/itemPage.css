@@ -1,0 +1,14 @@
+.itemEntryWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
+  margin-left: 0;
+  padding-left: 0;
+}
