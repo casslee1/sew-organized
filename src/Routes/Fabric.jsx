@@ -13,7 +13,7 @@ const Fabric = () => {
         <div className="pageWrapper">
           <div className='addButtonWrapper'>
             <Link to="../addfabric">
-              <Button variant="contained">Add New Fabric</Button>
+              <Button variant="contained" sx={{background:'#9fdbcd'}}>Add New Fabric</Button>
             </Link>
           </div>
           <div className='cardWrapper'>

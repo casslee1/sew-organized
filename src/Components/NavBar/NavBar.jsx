@@ -7,17 +7,17 @@ function NavBar() {
     <div className={styles.flexContainer}>
         <div >
         <Link to="/fabric">
-            <Button variant="contained">Fabric</Button>
+            <Button variant="contained" sx={{background:'#9fdbcd'}}>Fabric</Button>
         </Link>  
         </div>
         <div>
         <Link to="/patterns">
-            <Button variant="contained">Patterns</Button>
+            <Button variant="contained" sx={{background:'#9fdbcd'}}>Patterns</Button>
         </Link>  
         </div>
         <div>
         <Link to="/projects">
-            <Button variant="contained">Projects</Button>
+            <Button variant="contained" sx={{background:'#9fdbcd'}}>Projects</Button>
         </Link>  
         </div>
     </div>

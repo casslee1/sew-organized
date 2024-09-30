@@ -13,7 +13,7 @@ const Patterns = () => {
         <div className="pageWrapper">
           <div className='addButtonWrapper'>
             <Link to="../addpatterns">
-              <Button variant="contained">Add New Patterns</Button>
+              <Button variant="contained" sx={{background:'#9fdbcd'}}>Add New Patterns</Button>
             </Link>
           </div>
           <div className='cardWrapper'>

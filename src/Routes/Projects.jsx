@@ -38,7 +38,7 @@ const Projects = () => {
                         </FormControl>
                     </Box>
             <Link to="../addprojects">
-              <Button variant="contained">Add New Project</Button>
+              <Button variant="contained" sx={{background:'#9fdbcd'}}>Add New Project</Button>
             </Link>
           </div>
           <div className='cardWrapper'>

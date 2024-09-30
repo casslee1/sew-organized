@@ -7,7 +7,6 @@
 
 .background {
   min-height: 100vh;
-  background-color: #ffe549;
 }
 
 .titleContainer {
@@ -27,7 +26,6 @@
 .title {
   display: flex;
   padding-top: 70px;
-  color: #fff5e4;
 }
 
 .descriptionContainer {
@@ -45,6 +43,7 @@
   margin-top: 10px;
 }
 
-h1 {
+.title h1 {
   font-size: 3.5em;
+  color: #faf7f0;
 }

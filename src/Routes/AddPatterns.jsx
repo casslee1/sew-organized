@@ -34,6 +34,7 @@ const AddPatterns = () => {
     return (
         <div className="entryFormWrapper">
             <h1>Add a Pattern</h1>
+            <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
             <form onSubmit={handleSubmit}>
                 <div>
                     <FormLabel>Add image</FormLabel>
@@ -361,18 +362,21 @@ const AddPatterns = () => {
                     <Button 
                         variant="contained" 
                         type="submit"
+                        sx={{background:'#9fdbcd'}}
                     >
                         Submit
                     </Button>
                     <Link to="../patterns">
                         <Button 
                             variant="contained"
+                            sx={{background:'#9fdbcd'}}
                         >
                             Cancel
                         </Button>
                     </Link>
                 </div>
             </form>
+            </Box>
         </div>
     );
   };

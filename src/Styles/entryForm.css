@@ -1,9 +1,14 @@
 .entryFormWrapper {
   padding: 15px;
+  background-color: #9fdbcd;
 }
 
 .buttonWrapper {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.entryFormWrapper h1 {
+  color: #faf7f0;
 }

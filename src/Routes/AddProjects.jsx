@@ -7,6 +7,7 @@ import Radio from '@mui/material/Radio';
 import { Link } from "react-router-dom";
 import '../Styles/entryForm.css';
 import Grid from '@mui/material/Grid2';
+import Box from '@mui/material/Box';
 
 const AddProjects = () => {
 
@@ -20,7 +21,8 @@ const AddProjects = () => {
 
     return (
         <div className="entryFormWrapper">
-            <h1>Add a Projects</h1>
+            <h1>Add a Project</h1>
+            <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
             <form onSubmit={handleSubmit}>
                 <div>
                     <FormLabel>Add image</FormLabel>
@@ -135,12 +137,13 @@ const AddProjects = () => {
                 </div>
                 <br />
                 <div className="buttonWrapper">
-                    <Button variant="contained" type="submit">Submit</Button>
+                    <Button variant="contained" type="submit" sx={{background:'#9fdbcd'}}>Submit</Button>
                     <Link to="../projects">
-                        <Button variant="contained">Cancel</Button>
+                        <Button variant="contained" sx={{background:'#9fdbcd'}}>Cancel</Button>
                     </Link>
                 </div>   
-            </form>   
+            </form>  
+            </Box> 
         </div>
     );
 

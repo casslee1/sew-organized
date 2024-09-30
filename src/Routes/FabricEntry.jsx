@@ -7,8 +7,8 @@ import '../Styles/itemPage.css';
 const FabricEntry = () => {
     return (
       <div className='itemEntryWrapper'>
-        <div>
-          Image
+        <div className='topImageWrapper'>
+          <img src="src/Images/velvetFabric.png" alt="fabric" />
         </div>
         <div className='listWrapper'>
           <List>

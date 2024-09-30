@@ -68,6 +68,7 @@ const AddFabric = () => {
     return (
         <div className="entryFormWrapper">
             <h1>Add Fabric</h1>
+            <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
             <form onSubmit={handleSubmit}>
                 <div>
                     <FormLabel>Add image</FormLabel>
@@ -273,12 +274,13 @@ const AddFabric = () => {
                 </div>
                 <br />
                 <div className="buttonWrapper">
-                <Button variant="contained" type="submit">Submit</Button>
+                <Button variant="contained" type="submit" sx={{background:'#9fdbcd'}}>Submit</Button>
                 <Link to="../fabric">
-                    <Button variant="contained" onClick={testServer} >Cancel</Button>
+                    <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={testServer} >Cancel</Button>
                 </Link>
                 </div>
             </form>
+            </Box>
         </div>
     );
   };
