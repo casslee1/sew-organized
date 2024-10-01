@@ -32,11 +32,13 @@ const AddFabric = () => {
       };
 
       const testServer = () => {
-      fetch('http://localhost:8080/test/:Username?User1')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      });
+        console.log("here");
+        const id = 1;
+        fetch(`https://localhost:3306/user/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        });
       };
 
       const fibreTypesList = [
