@@ -92,7 +92,7 @@ const AddFabric = () => {
                 <br />
                 <div> {/*Switch type of input, maybe to dropdown, need to sort out how to do metric/imperial selection/switch */}
                     <TextField 
-                        type="text" 
+                        type="number"
                         label="Length" 
                         name="length"
                         sx={{width: 380 }}
@@ -101,7 +101,7 @@ const AddFabric = () => {
                 <br />
                 <div> {/*Switch type of input, maybe to dropdown, need to sort out how to do metric/imperial selection/switch */}
                     <TextField 
-                        type="text" 
+                        type="number" 
                         label="Width" 
                         name="width"
                         sx={{width: 380 }}
