@@ -7,6 +7,9 @@
 
 .background {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .titleContainer {
@@ -28,19 +31,25 @@
   padding-top: 70px;
 }
 
+@media only screen and (min-width: 600px) {
+  .descriptionContainer {
+    max-width: 50%;
+    align-items: center;
+  }
+}
+
 .descriptionContainer {
   display: flex;
   padding: 15px;
   color: #00664e;
+  text-align: center;
 }
 
 .buttonContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-left: 18%;
-  padding-right: 18%;
   margin-top: 10px;
+  gap: 20px;
 }
 
 .title h1 {

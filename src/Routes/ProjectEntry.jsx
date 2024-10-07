@@ -11,6 +11,9 @@ const ProjectEntry = () => {
         </div>
         <div className='listWrapper'>
           <List>
+          <ListItem>
+              <ListItemText primary="Project name: " />
+            </ListItem>
             <ListItem>
               <ListItemText primary="Pattern: " />
             </ListItem>
@@ -37,6 +40,9 @@ const ProjectEntry = () => {
             </ListItem>
             <ListItem>
               <ListItemText primary="Length of fabric used: " />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Thread used: " />
             </ListItem>
             <ListItem>
               <ListItemText primary="Fitting notes: " />

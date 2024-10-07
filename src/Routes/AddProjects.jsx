@@ -34,6 +34,15 @@ const AddProjects = () => {
                 </div>
                 <br />
                 <div>
+                    <TextField 
+                        type="text" 
+                        label="Project name" 
+                        name="projectName"
+                        sx={{width: 380 }}
+                    />
+                </div>
+                <br />
+                <div>
                     <FormLabel>Pattern</FormLabel>
                     {/*dropdown populated from user's patterns with text box if pattern not in stash */}
                 </div>
@@ -112,6 +121,15 @@ const AddProjects = () => {
                         type="text" 
                         label="Length of fabric used" 
                         name="lengthOfFabricUsed"
+                        sx={{width: 380 }}
+                    />
+                </div>
+                <br />
+                <div> 
+                    <TextField 
+                        type="text" 
+                        label="Thread used" 
+                        name="threadUsed"
                         sx={{width: 380 }}
                     />
                 </div>
