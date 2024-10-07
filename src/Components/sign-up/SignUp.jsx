@@ -6,14 +6,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
-import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import getSignUpTheme from "./theme/getSignUpTheme";
-import TemplateFrame from "./TemplateFrame";
+import SignInDialog from "../SignInDialog/SignInDialog"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -72,11 +71,11 @@ export default function SignUp() {
     }
   }, []);
 
-  const toggleColorMode = () => {
+ /* const toggleColorMode = () => {
     const newMode = mode === "dark" ? "light" : "dark";
     setMode(newMode);
     localStorage.setItem("themeMode", newMode); // Save the selected mode to localStorage
-  };
+  };*/
 
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
@@ -131,12 +130,7 @@ export default function SignUp() {
   };
 
   return (
-    <TemplateFrame
-      toggleCustomTheme={toggleCustomTheme}
-      showCustomTheme={showCustomTheme}
-      mode={mode}
-      toggleColorMode={toggleColorMode}
-    >
+ 
       <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
         <CssBaseline enableColorScheme />
         <SignUpContainer direction="column" justifyContent="space-between">
@@ -222,13 +216,7 @@ export default function SignUp() {
                 <Typography sx={{ textAlign: "center" }}>
                   Already have an account?{" "}
                   <span>
-                    <Link
-                      href="/material-ui/getting-started/templates/sign-in/"
-                      variant="body2"
-                      sx={{ alignSelf: "center" }}
-                    >
-                      Sign in
-                    </Link>
+                    <SignInDialog buttonVariant="text"/>
                   </span>
                 </Typography>
               </Box>        
@@ -236,6 +224,6 @@ export default function SignUp() {
           </Stack>
         </SignUpContainer>
       </ThemeProvider>
-    </TemplateFrame>
+    
   );
 }

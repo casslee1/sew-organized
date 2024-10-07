@@ -1,18 +1,12 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+
 import './App.css'
 import Button from '@mui/material/Button';
-import LoginDialog from '../Components/LoginDialog/LoginDialog'
+import SignInDialog from '../Components/SignInDialog/SignInDialog'
 /*import SignUp from '../Components/sign-up/SignUp'
 import SignIn from '../Components/sign-in/SignIn'*/
 
 const App = () => {
-
-  const [loginDialogOpen, setLoginDialogOpen] = useState(false);
-
-  const handleClose = () => {
-    setLoginDialogOpen(false);
-  };
 
   return (
  <div className='background'>
@@ -31,7 +25,7 @@ const App = () => {
       </Link>
     </div>
     <div>
-      <LoginDialog open={loginDialogOpen} handleClose={handleClose} />
+      <SignInDialog buttonVariant="contained" />
     </div>
   </div> 
  </div>

@@ -16,7 +16,7 @@ import { styled } from "@mui/material/styles";
 import ForgotPassword from "./ForgotPassword";
 
 import AppTheme from "../shared-theme/AppTheme";
-//import SignUp from "..sign-up/SignUp"
+import SignUpDialog from "../SignUpDialog/SignUpDialog"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -192,13 +192,7 @@ export default function SignIn(props) {
             <Typography sx={{ textAlign: "center" }}>
               Don&apos;t have an account?{" "}
               <span>
-                <Link
-                  href="/material-ui/getting-started/templates/sign-in/"
-                  variant="body2"
-                  sx={{ alignSelf: "center" }}
-                >
-                  Sign up
-                </Link>
+               <SignUpDialog />
               </span>
             </Typography>
           </Box>

@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import SignIn from '../sign-in/SignIn'
+import SignUp from '../sign-up/SignUp'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -28,8 +28,18 @@ export default function CustomizedDialogs() {
 
   return (
     <React.Fragment>
-      <Button variant="contained" sx={{background:'#ff5938'}} onClick={handleClickOpen}>
-       Get Started
+      <Button variant="text"
+        sx={{
+            color: '#1976d2',
+            textTransform: 'none',
+            padding: 0,
+            alignSelf: "center",
+            '&:hover': {
+            backgroundColor: 'transparent', 
+            textDecoration: 'underline', 
+            },
+        }} onClick={handleClickOpen}>
+        Sign Up
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -49,7 +59,7 @@ export default function CustomizedDialogs() {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-            <SignIn />
+            <SignUp buttonVariant='text'/>
         </DialogContent>
         </BootstrapDialog>
     </React.Fragment>
