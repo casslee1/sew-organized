@@ -3,24 +3,24 @@ const router = express.Router();
 router.user(express.json());
 const mysql = require("mysql");
 
-require("dotenv").config({ path: __dirname + "../../../.env" });
+//require("dotenv").config({ path: __dirname + "../../../.env" });
 
-const fetchUser = (req, res, next) => {
+export const fetchUser = (req, res, next) => {
   let db = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: process.env.password,
-    database: "sewOrganizedDB",
+    password: "5736",
+    database: "sys",
+    port: 3306,
   });
 
-  let sql = "SELECT FROM Users WHERE id=?";
+  let sql = "SELECT * FROM users WHERE id=?";
 
   db.query(sql, req.query.userID, (err, result) => {
+    console.log({ sql, err, result });
     if (result.length >= 0) {
       res.status(200).json({ Success: true, data: result });
       db.end();
     }
   });
 };
-
-module.exports = { fetchUser };

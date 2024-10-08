@@ -34,7 +34,7 @@ const AddFabric = () => {
       const testServer = () => {
         console.log("here");
         const id = 1;
-        fetch(`https://localhost:3306/user/${id}`)
+        fetch(`https://localhost:3306/user/userID?userID=${id}`, {method: 'GET', headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}})
         .then(res => res.json())
         .then(data => {
             console.log(data)
