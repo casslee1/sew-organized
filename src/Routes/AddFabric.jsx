@@ -14,6 +14,7 @@ import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
 import '../Styles/entryForm.css';
+import axios from "axios";
 
 
 const AddFabric = () => {
@@ -31,14 +32,11 @@ const AddFabric = () => {
         }
       };
 
-      const testServer = () => {
+      const testServer = async () => {
         console.log("here");
-        const id = 1;
-        fetch(`https://localhost:3306/user/userID?userID=${id}`, {method: 'GET', headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}})
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        });
+        //const id = 1;
+        const response = await axios.get("http://localhost:8080/test", {id:1})
+        console.log(response);
       };
 
       const fibreTypesList = [
