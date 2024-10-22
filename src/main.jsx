@@ -8,11 +8,14 @@ import Projects from './Routes/Projects';
 import AddFabric from './Routes/AddFabric';
 import AddPatterns from './Routes/AddPatterns';
 import AddProjects from './Routes/AddProjects';
+import AddSample from './Routes/AddSample';
 import About from './Routes/About';
 import Home from './Routes/Home';
+import Sample from './Routes/Sample';
 import FabricEntry from './Routes/FabricEntry';
 import PatternEntry from './Routes/PatternEntry';
 import ProjectEntry from './Routes/ProjectEntry';
+import SampleEntry from './Routes/SampleEntry';
 import '../src/Styles/index.css';
 
 
@@ -42,6 +45,10 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
+    path: "sample",
+    element: <Sample />,
+  },
+  {
     path: "addpatterns",
     element: <AddPatterns />,
   },
@@ -54,6 +61,10 @@ const router = createBrowserRouter([
     element: <AddFabric />,
   },
   {
+    path: "addsample",
+    element: <AddSample />,
+  },
+  {
     path: "fabricentry",
     element: <FabricEntry />,
   },
@@ -64,6 +75,10 @@ const router = createBrowserRouter([
   {
     path: "projectentry",
     element: <ProjectEntry />,
+  },
+  {
+    path: "sampleentry",
+    element: <SampleEntry />,
   },
 ]);
 
