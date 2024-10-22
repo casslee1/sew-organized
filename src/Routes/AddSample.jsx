@@ -3,16 +3,27 @@ import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 import '../Styles/entryForm.css';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 const AddSample = () => {
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        let body = {userID:1};
         event.preventDefault();
         const formData = new FormData(event.target);
         for (let [key, value] of formData.entries()) {
-          console.log(`${key}: ${value}`);
+            body[key] = value;
         }
-      };
+        const response = await axios.put("http://localhost:8080/sample/add", body)
+        console.log(response);
+    };
+
+    //   const testServer = async () => {
+    //     console.log("here");
+    //     //const id = 1;
+    //     const response = await axios.get("http://localhost:8080/test", {id:1})
+    //     console.log(response);
+    //   };
 
     return (
         <div className="entryFormWrapper">
@@ -28,6 +39,7 @@ const AddSample = () => {
                         sx={{width: 380 }}
                     />
                 </div>
+        
                 
                 <br />
                 <div className="buttonWrapper">

@@ -1,39 +1,40 @@
 const express = require("express");
 const app = express();
-
-require("dotenv").config({ path: __dirname + "./../.env" });
-
-const mysql = require("mysql");
-
 const cors = require("cors");
 app.use(cors());
 
-const setUpConnection = () => {
-  return mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: process.env.password,
-    database: "sys",
-    port: "3306",
-  });
-};
+const { addSample } = require("../server/controllers/sample");
+// require("dotenv").config({ path: __dirname + "./../.env" });
+// const mysql = require("mysql");
 
-app.get("/test", (req, res) => {
-  const con = setUpConnection();
-  con.connect();
+// const setUpConnection = () => {
+//   return mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: process.env.password,
+//     database: "sys",
+//     port: "3306",
+//   });
+// };
 
-  let sql = `SELECT * FROM users WHERE id=${req.id}`;
+app.put("/sample/add", addSample);
 
-  con.query(sql, (err, rows, fields) => {
-    if (!err) {
-      res.send(JSON.stringify(rows));
-      con.destroy();
-    } else {
-      console.log("Error while performing Query.");
-      con.destroy();
-    }
-  });
-});
+// app.get("/test", (req, res) => {
+//   const con = setUpConnection();
+//   con.connect();
+
+//   let sql = `SELECT * FROM users WHERE id=${req.id}`;
+
+//   con.query(sql, (err, rows, fields) => {
+//     if (!err) {
+//       res.send(JSON.stringify(rows));
+//       con.destroy();
+//     } else {
+//       console.log("Error while performing Query.");
+//       con.destroy();
+//     }
+//   });
+// });
 
 app.listen(8080, () => {
   console.log("Port 8080");
