@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import NavBar from '../Components/NavBar/NavBar';
-import PatternCard from '../Components/PatternCard/PatternCard';
+import SampleCard from '../Components/SampleCard/SampleCard';
 import '../Styles/index.css';
 
 const Patterns = () => {
@@ -17,7 +17,7 @@ const Patterns = () => {
             </Link>
           </div>
           <div className='cardWrapper'>
-            <PatternCard /> <PatternCard />
+            <SampleCard /> <SampleCard />
           </div>
         </div>
       </div>
