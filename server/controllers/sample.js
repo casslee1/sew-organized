@@ -19,11 +19,13 @@ const setUpConnection = () => {
 };
 
 const addSample = (req, res) => {
+  const userID = 1;
+  const { sampleColumn } = req.body;
   const con = setUpConnection();
   console.log(req.body);
-  con.connect();
+  //   con.connect();
 
-  let sql = `INSERT INTO sample (userID, sampleColumn) VALUES (${req.userID}, ${req.sampleData})`;
+  let sql = `INSERT INTO sample (userID, sampleColumn) VALUES (${userID}, '${sampleColumn}')`;
 
   con.query(sql, (err, rows) => {
     if (!err) {
