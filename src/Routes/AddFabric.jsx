@@ -24,20 +24,31 @@ const AddFabric = () => {
     const [fibreType, setFibreType] = useState([]);
     
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        for (let [key, value] of formData.entries()) {
-          console.log(`${key}: ${value}`);
-        }
-      };
+        const handleSubmit = async (event) => {
+            let body = {userID:1};
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            for (let [key, value] of formData.entries()) {
+                body[key] = value;
+            }
+            const response = await axios.put("http://localhost:8080/fabric/add", body)
+            console.log(response);
+        };
 
-      const testServer = async () => {
-        console.log("here");
-        //const id = 1;
-        const response = await axios.get("http://localhost:8080/test", {id:1})
-        console.log(response);
-      };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const formData = new FormData(event.target);
+    //     for (let [key, value] of formData.entries()) {
+    //       console.log(`${key}: ${value}`);
+    //     }
+    //   };
+
+    //   const testServer = async () => {
+    //     console.log("here");
+    //     //const id = 1;
+    //     const response = await axios.get("http://localhost:8080/test", {id:1})
+    //     console.log(response);
+    //   };
 
       const fibreTypesList = [
         'Cotton',
@@ -276,7 +287,7 @@ const AddFabric = () => {
                 <div className="buttonWrapper">
                 <Button variant="contained" type="submit" sx={{background:'#9fdbcd'}}>Submit</Button>
                 <Link to="../fabric">
-                    <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={testServer} >Cancel</Button>
+                    <Button variant="contained" sx={{background:'#9fdbcd'}} >Cancel</Button>
                 </Link>
                 </div>
             </form>
@@ -286,3 +297,5 @@ const AddFabric = () => {
   };
   
   export default AddFabric;
+
+  // <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={testServer} >Cancel</Button>
