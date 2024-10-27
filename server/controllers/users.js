@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 router.user(express.json());
 const mysql = require("mysql");
@@ -9,7 +9,7 @@ export const fetchUser = (req, res, next) => {
   let db = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "5736",
+    password: "",
     database: "sys",
     port: 3306,
   });

@@ -1,11 +1,19 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
+import sampleRoutes from "./routes/sampleRoutes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const { addSample } = require("../server/controllers/sample");
+app.use("/sample", sampleRoutes);
+
+app.listen(8080, () => {
+  console.log("Port 8080");
+});
+
+//const { addSample } = require("../server/controllers/sample");
+
 // require("dotenv").config({ path: __dirname + "./../.env" });
 // const mysql = require("mysql");
 
@@ -19,7 +27,7 @@ const { addSample } = require("../server/controllers/sample");
 //   });
 // };
 
-app.put("/sample/add", addSample);
+//app.put("/sample/add", addSample);
 
 // app.get("/test", (req, res) => {
 //   const con = setUpConnection();
@@ -37,10 +45,6 @@ app.put("/sample/add", addSample);
 //     }
 //   });
 // });
-
-app.listen(8080, () => {
-  console.log("Port 8080");
-});
 
 // const fetchUser = (req, res, next) => {
 //   let db = mysql.createPool({
