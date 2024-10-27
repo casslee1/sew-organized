@@ -20,7 +20,7 @@ import axios from "axios";
 const AddFabric = () => {
 
     const [solidOrPrint, setSolidOrPrint] = useState('');
-    const [colourSelection, setColourSelection] = useState('');
+    const [dominantColour, setDominantColour] = useState('');
     const [fibreType, setFibreType] = useState([]);
     
 
@@ -31,6 +31,10 @@ const AddFabric = () => {
             for (let [key, value] of formData.entries()) {
                 body[key] = value;
             }
+
+            body["fibreType"] = fibreType;
+            body["dominantColour"] = dominantColour;
+
             const response = await axios.put("http://localhost:8080/fabric/add", body)
             console.log(response);
         };
@@ -101,7 +105,7 @@ const AddFabric = () => {
                 <br />
                 <div> {/*Switch type of input, maybe to dropdown, need to sort out how to do metric/imperial selection/switch */}
                     <TextField 
-                        type="number"
+                        type="double"
                         label="Length" 
                         name="length"
                         sx={{width: 380 }}
@@ -110,7 +114,7 @@ const AddFabric = () => {
                 <br />
                 <div> {/*Switch type of input, maybe to dropdown, need to sort out how to do metric/imperial selection/switch */}
                     <TextField 
-                        type="number" 
+                        type="double" 
                         label="Width" 
                         name="width"
                         sx={{width: 380 }}
@@ -200,8 +204,8 @@ const AddFabric = () => {
                             <InputLabel>Dominant Colour</InputLabel>
                             <Select
                                 sx={{width: 380 }}                    
-                                value={colourSelection}
-                                onChange={(event) => setColourSelection(event.target.value)}                       
+                                value={dominantColour}
+                                onChange={(event) => setDominantColour(event.target.value)}                       
                             >
                                 <MenuItem value='red'>Red</MenuItem>
                                 <MenuItem value='orange'>Orange</MenuItem>
@@ -219,13 +223,14 @@ const AddFabric = () => {
                                 <MenuItem value='brown'>Brown</MenuItem>
                                 <MenuItem value='multicolour'>Multicolour</MenuItem>
                                 <MenuItem value='rainbow'>Rainbow</MenuItem>
+                                <MenuItem value='blackAndWhite'>Black and White</MenuItem>
                                 <MenuItem value='other'>Other</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
                 </div>
                 <br />
-                {colourSelection === 'other' && (
+                {dominantColour === 'other' && (
                 <div>
                     <div>
                     <TextField 
@@ -257,7 +262,7 @@ const AddFabric = () => {
                 <br />
                 <div>
                     <TextField 
-                        type="number" 
+                        type="double" 
                         label="Price" 
                         name="price"
                         sx={{width: 380 }}

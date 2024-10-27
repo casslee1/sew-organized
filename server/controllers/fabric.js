@@ -36,7 +36,7 @@ export const addFabric = (req, res) => {
     fabricType,
     solidOrPrint,
     printType,
-    colourSelection,
+    dominantColour,
     otherColour,
     purchaseDate,
     purchasedFrom,
@@ -49,7 +49,7 @@ export const addFabric = (req, res) => {
 
   let sql = `INSERT INTO fabric 
   (userID, fabricImage, fabricName, length, width, fibreType, otherFibreType, wovenOrKnit, fabricType, solidOrPrint, printType, dominantColour, otherColour, purchaseDate, purchasedFrom, price, prewashed, notes) 
-  VALUES (${userID}, '${fabricImage}', '${fabricName}', '${length}', '${width}', '${fibreType}', '${otherFibreType}', '${wovenOrKnit}', '${fabricType}', '${solidOrPrint}', '${printType}', '${colourSelection}', '${otherColour}', '${purchaseDate}', '${purchasedFrom}', '${price}', '${prewashed}', '${notes}')`;
+  VALUES (${userID}, '${fabricImage}', '${fabricName}', '${length}', '${width}', '${fibreType}', '${otherFibreType}', '${wovenOrKnit}', '${fabricType}', '${solidOrPrint}', '${printType}', '${dominantColour}', '${otherColour}', '${purchaseDate}', '${purchasedFrom}', '${price}', '${prewashed}', '${notes}')`;
 
   con.query(sql, (err, rows) => {
     con.destroy();
