@@ -6,7 +6,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import { Link } from "react-router-dom";
 import styles from './sampleCard.module.css'
 
-export default function SampleCard({ userID, sampleColumn}) {
+export default function SampleCard({ userID, sampleColumn }) {
     return (
       <div className={styles.sampleCardContainer}>
         <Card sx={{ maxWidth: 345 }}>
@@ -30,3 +30,5 @@ export default function SampleCard({ userID, sampleColumn}) {
       </div>
         );
     }
+
+

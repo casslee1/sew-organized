@@ -39,20 +39,6 @@ const AddFabric = () => {
             console.log(response);
         };
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const formData = new FormData(event.target);
-    //     for (let [key, value] of formData.entries()) {
-    //       console.log(`${key}: ${value}`);
-    //     }
-    //   };
-
-    //   const testServer = async () => {
-    //     console.log("here");
-    //     //const id = 1;
-    //     const response = await axios.get("http://localhost:8080/test", {id:1})
-    //     console.log(response);
-    //   };
 
       const fibreTypesList = [
         'Cotton',

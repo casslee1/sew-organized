@@ -25,15 +25,13 @@ const setUpConnection = () => {
 
 export const addProject = (req, res) => {
   const userID = 1;
-  const {
-   
-  } = req.body;
+  const {} = req.body;
   const con = setUpConnection();
   console.log(req.body);
 
   let sql = `INSERT INTO projects
-  (userID, ) 
-  VALUES (${userID}, '${}')`;
+  (userID, )
+  VALUES (${userID},)`;
 
   con.query(sql, (err, rows) => {
     con.destroy();

@@ -12,6 +12,7 @@ dotenv.config({ path: path.join(__dirname, "../../.env") });
 const app = express();
 
 app.use(cors());
+
 const setUpConnection = () => {
   return createConnection({
     host: "localhost",
@@ -26,14 +27,74 @@ const setUpConnection = () => {
 export const addPattern = (req, res) => {
   const userID = 1;
   const {
-   
+    patternImage,
+    patternCompany,
+    otherPatternCompany,
+    patternNumber,
+    patternName,
+    sizeRange,
+    patternType,
+    otherPatternType,
+    printOrPDF,
+    isPDFPrinted,
+    cutOut,
+    sizeCutOut,
+    fabricRequirements,
+    notionsRequired,
+    purchaseDate,
+    yearReleased,
+    forWovenOrKnit,
+    recommendedFabricTypes,
+    purchasedFrom,
+    notes,
   } = req.body;
   const con = setUpConnection();
   console.log(req.body);
 
   let sql = `INSERT INTO patterns
-  (userID, ) 
-  VALUES (${userID}, '${}')`;
+    (userID,     
+    patternImage,
+    patternCompany,
+    otherPatternCompany,
+    patternNumber,
+    patternName,
+    sizeRange,
+    patternType,
+    otherPatternType,
+    printOrPDF,
+    isPDFPrinted,
+    cutOut,
+    sizeCutOut,
+    fabricRequirements,
+    notionsRequired,
+    purchaseDate,
+    yearReleased,
+    forWovenOrKnit,
+    recommendedFabricTypes,
+    purchasedFrom,
+    notes) 
+    VALUES 
+    (${userID}, 
+    '${patternImage}', 
+    '${patternCompany}', 
+    '${otherPatternCompany}', 
+    '${patternNumber}', 
+    '${patternName}', 
+    '${sizeRange}', 
+    '${patternType}', 
+    '${otherPatternType}', 
+    '${printOrPDF}', 
+    '${isPDFPrinted}', 
+    '${cutOut}', 
+    '${sizeCutOut}', 
+    '${fabricRequirements}', 
+    '${notionsRequired}', 
+    '${purchaseDate}', 
+    '${yearReleased}', 
+    '${forWovenOrKnit}', 
+    '${recommendedFabricTypes}', 
+    '${purchasedFrom}', 
+    '${notes}')`;
 
   con.query(sql, (err, rows) => {
     con.destroy();

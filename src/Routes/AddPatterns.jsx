@@ -15,6 +15,7 @@ import Select from '@mui/material/Select';
 import ListSubheader from '@mui/material/ListSubheader';
 import '../Styles/entryForm.css';
 import Grid from '@mui/material/Grid2';
+import axios from "axios";
 
 
 const AddPatterns = () => {
@@ -23,12 +24,20 @@ const AddPatterns = () => {
     const [printOrPDF, setPrintOrPDF] = useState('');
     const [cutOut, setCutOut] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        let body = {userID:1};
         event.preventDefault();
         const formData = new FormData(event.target);
         for (let [key, value] of formData.entries()) {
-          console.log(`${key}: ${value}`);
+            body[key] = value;
         }
+
+        body["patternCompany"] = patternCompany;
+        body["patternType"] = patternType;
+        
+
+        const response = await axios.put("http://localhost:8080/patterns/add", body)
+        console.log(response);
       };
 
     return (
@@ -51,7 +60,7 @@ const AddPatterns = () => {
                             <InputLabel>Pattern Company</InputLabel>
                             <Select
                                 sx={{width: 380 }}
-                                required                    
+                                required={true}                    
                                 value={patternCompany}
                                 onChange={(event) => setPatternCompany(event.target.value)}                       
                             >
@@ -199,7 +208,7 @@ const AddPatterns = () => {
                         onChange={(event) => setPatternType(event.target.value)}  
                     > 
                     <Grid container spacing={2} >
-                    <Grid container item xs={6} direction="column" >
+                    <Grid container  xs={6} direction="column" >
                         <FormControlLabel control={<Checkbox />} label="Top" value="top" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Skirt" value="skirt" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Dress" value="dress" name="patternType"/>
@@ -207,7 +216,7 @@ const AddPatterns = () => {
                         <FormControlLabel control={<Checkbox />} label="Shorts" value="shorts" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Jumpsuit" value="jumpsuit" name="patternType"/>
                         </Grid>
-                        <Grid container item xs={6} direction="column" >
+                        <Grid container  xs={6} direction="column" >
                         <FormControlLabel control={<Checkbox />} label="Outerwear" value="outerwear" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Swimwear" value="swimwear" name="patternType"/>
                         <FormControlLabel control={<Checkbox />} label="Under Garments" value="underGarments" name="patternType"/>
