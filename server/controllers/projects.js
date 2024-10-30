@@ -25,13 +25,48 @@ const setUpConnection = () => {
 
 export const addProject = (req, res) => {
   const userID = 1;
-  const {} = req.body;
+  const {
+    projectName,
+    projectStatus,
+    haveAllSupplies,
+    deadline,
+    startDate,
+    dateCompleted,
+    sizeMade,
+    lengthOfFabricUsed,
+    threadUsed,
+    fittingNotes,
+    notes,
+  } = req.body;
   const con = setUpConnection();
   console.log(req.body);
 
   let sql = `INSERT INTO projects
-  (userID, )
-  VALUES (${userID},)`;
+  (userID, 
+  projectName, 
+  projectStatus, 
+  haveAllSupplies, 
+  deadline, 
+  startDate, 
+  dateCompleted, 
+  sizeMade, 
+  lengthOfFabricUsed, 
+  threadUsed, 
+  fittingNotes, 
+  notes)
+  VALUES 
+  (${userID}, 
+  ${projectName}, 
+  ${projectStatus}, 
+  ${haveAllSupplies}, 
+  ${deadline}, 
+  ${startDate}, 
+  ${dateCompleted}, 
+  ${sizeMade}, 
+  ${lengthOfFabricUsed}, 
+  ${threadUsed}, 
+  ${fittingNotes}, 
+  ${notes})`;
 
   con.query(sql, (err, rows) => {
     con.destroy();

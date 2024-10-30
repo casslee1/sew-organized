@@ -8,16 +8,21 @@ import { Link } from "react-router-dom";
 import '../Styles/entryForm.css';
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
+import axios from "axios";
 
 const AddProjects = () => {
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        let body = {userID:1};
         event.preventDefault();
         const formData = new FormData(event.target);
         for (let [key, value] of formData.entries()) {
-          console.log(`${key}: ${value}`);
+            body[key] = value;
         }
-      };
+
+        const response = await axios.put("http://localhost:8080/projects/add", body)
+        console.log(response);
+    };
 
     return (
         <div className="entryFormWrapper">
@@ -42,26 +47,26 @@ const AddProjects = () => {
                     />
                 </div>
                 <br />
-                <div>
+                {/* <div>
                     <FormLabel>Pattern</FormLabel>
                     {/*dropdown populated from user's patterns with text box if pattern not in stash */}
-                </div>
+                {/* </div>
                 <br />
                 <div>
-                    <FormLabel>Fabric</FormLabel>
+                    <FormLabel>Fabric</FormLabel> */}
                     {/*dropdown populated from user's fabrics with text box if fabric not in stash */}
-                </div>
-                <br />
+                {/* </div>
+                <br /> */} 
                 <div>
                     <FormControl>
                         <FormLabel>Project Status</FormLabel>
                         <RadioGroup>
                         <Grid container rowSpacing={1} columnSpacing={6}>
-                        <Grid container item xs={6} direction="column" >
+                        <Grid container xs={6} direction="column" >
                             <FormControlLabel value="planned" name="projectStatus" control={<Radio />} label="Planned" />
                             <FormControlLabel value="inProgress" name="projectStatus" control={<Radio />} label="In Progress" />
                             </Grid>
-                            <Grid container item xs={6} direction="column" >
+                            <Grid container xs={6} direction="column" >
                             <FormControlLabel value="completed" name="projectStatus" control={<Radio />} label="Completed" />
                             <FormControlLabel value="onHold" name="projectStatus" control={<Radio />} label="On Hold" />
                             </Grid>
