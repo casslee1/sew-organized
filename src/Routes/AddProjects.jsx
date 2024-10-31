@@ -9,8 +9,11 @@ import '../Styles/entryForm.css';
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
 import axios from "axios";
+import {useState} from 'react';
 
 const AddProjects = () => {
+
+    const [projectStatus, setProjectStatus] = useState("");
 
     const handleSubmit = async (event) => {
         let body = {userID:1,  pattern: "TBD", fabric: "TBD"};
@@ -22,6 +25,9 @@ const AddProjects = () => {
 
         const response = await axios.put("http://localhost:8080/projects/add", body)
         console.log(response);
+
+        event.target.reset();
+        setProjectStatus("");
     };
 
     return (
@@ -60,15 +66,38 @@ const AddProjects = () => {
                 <div>
                     <FormControl>
                         <FormLabel>Project Status</FormLabel>
-                        <RadioGroup>
+                        <RadioGroup 
+                        value = {projectStatus}
+                        onChange={(e) => setProjectStatus(e.target.value)}
+                        >
                         <Grid container rowSpacing={1} columnSpacing={6}>
                         <Grid container xs={6} direction="column" >
-                            <FormControlLabel value="planned" name="projectStatus" control={<Radio />} label="Planned" />
-                            <FormControlLabel value="inProgress" name="projectStatus" control={<Radio />} label="In Progress" />
+                            <FormControlLabel 
+                                value="planned" 
+                                name="projectStatus" 
+                                control={<Radio />} 
+                                label="Planned" 
+                            />
+                            <FormControlLabel 
+                                value="inProgress" 
+                                name="projectStatus" 
+                                control={<Radio />} 
+                                label="In Progress" 
+                            />
                             </Grid>
                             <Grid container xs={6} direction="column" >
-                            <FormControlLabel value="completed" name="projectStatus" control={<Radio />} label="Completed" />
-                            <FormControlLabel value="onHold" name="projectStatus" control={<Radio />} label="On Hold" />
+                            <FormControlLabel 
+                                value="completed" 
+                                name="projectStatus" 
+                                control={<Radio />} 
+                                label="Completed" 
+                            />
+                            <FormControlLabel 
+                                value="onHold" 
+                                name="projectStatus" 
+                                control={<Radio />} 
+                                label="On Hold" 
+                            />
                             </Grid>
                         </Grid>
                         </RadioGroup>
@@ -79,8 +108,18 @@ const AddProjects = () => {
                     <FormControl>
                         <FormLabel>Have all supplies?</FormLabel> {/*If no include way to make list of supplies needed */}
                         <RadioGroup>
-                            <FormControlLabel value="yes" name="haveSupplies" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="no" name="haveSupplies" control={<Radio />} label="No" />
+                            <FormControlLabel 
+                                value="yes" 
+                                name="haveSupplies" 
+                                control={<Radio />} 
+                                label="Yes" 
+                            />
+                            <FormControlLabel 
+                                value="no" 
+                                name="haveSupplies" 
+                                control={<Radio />} 
+                                label="No" 
+                            />
                         </RadioGroup>
                     </FormControl>
                 </div>
