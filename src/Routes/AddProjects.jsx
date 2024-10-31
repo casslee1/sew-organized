@@ -13,7 +13,7 @@ import axios from "axios";
 const AddProjects = () => {
 
     const handleSubmit = async (event) => {
-        let body = {userID:1};
+        let body = {userID:1,  pattern: "TBD", fabric: "TBD"};
         event.preventDefault();
         const formData = new FormData(event.target);
         for (let [key, value] of formData.entries()) {
@@ -107,7 +107,7 @@ const AddProjects = () => {
                     <FormLabel>Date Completed</FormLabel>
                     <TextField 
                         type="date"
-                        name="completionDate"
+                        name="dateCompleted"
                         sx={{width: 380 }}
                     />
                 </div>

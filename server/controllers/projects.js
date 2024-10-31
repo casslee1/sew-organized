@@ -25,18 +25,20 @@ const setUpConnection = () => {
 
 export const addProject = (req, res) => {
   const userID = 1;
+  const pattern = "TBD";
+  const fabric = "TBD";
   const {
-    projectName,
-    projectStatus,
-    haveAllSupplies,
-    deadline,
-    startDate,
-    dateCompleted,
-    sizeMade,
-    lengthOfFabricUsed,
-    threadUsed,
-    fittingNotes,
-    notes,
+    projectName = null,
+    projectStatus = null,
+    haveAllSupplies = null,
+    deadline = null,
+    startDate = null,
+    dateCompleted = null,
+    sizeMade = null,
+    lengthOfFabricUsed = null,
+    threadUsed = null,
+    fittingNotes = null,
+    notes = null,
   } = req.body;
   const con = setUpConnection();
   console.log(req.body);
@@ -44,6 +46,8 @@ export const addProject = (req, res) => {
   let sql = `INSERT INTO projects
   (userID, 
   projectName, 
+  pattern,
+  fabric,
   projectStatus, 
   haveAllSupplies, 
   deadline, 
@@ -56,17 +60,19 @@ export const addProject = (req, res) => {
   notes)
   VALUES 
   (${userID}, 
-  ${projectName}, 
-  ${projectStatus}, 
-  ${haveAllSupplies}, 
-  ${deadline}, 
-  ${startDate}, 
-  ${dateCompleted}, 
-  ${sizeMade}, 
-  ${lengthOfFabricUsed}, 
-  ${threadUsed}, 
-  ${fittingNotes}, 
-  ${notes})`;
+  ${projectName ? `'${projectName}'` : "NULL"},
+  '${pattern}',
+  '${fabric}', 
+  ${projectStatus ? `'${projectStatus}'` : "NULL"}, 
+  ${haveAllSupplies ? `'${haveAllSupplies}'` : "NULL"}, 
+  ${deadline ? `'${deadline}'` : "NULL"}, 
+  ${startDate ? `'${startDate}'` : "NULL"}, 
+  ${dateCompleted ? `'${dateCompleted}'` : "NULL"}, 
+  ${sizeMade ? `'${sizeMade}'` : "NULL"}, 
+  ${lengthOfFabricUsed ? `'${lengthOfFabricUsed}'` : "NULL"}, 
+  ${threadUsed ? `'${threadUsed}'` : "NULL"}, 
+  ${fittingNotes ? `'${fittingNotes}'` : "NULL"}, 
+  ${notes ? `'${notes}'` : "NULL"})`;
 
   con.query(sql, (err, rows) => {
     con.destroy();
