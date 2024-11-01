@@ -1,27 +1,10 @@
 import express from "express";
-import dotenv from "dotenv";
-import { createConnection } from "mysql";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.join(__dirname, "../../.env") });
+import { setUpConnection } from "../utils/setUpConnection.js";
 
 const app = express();
 
 app.use(cors());
-const setUpConnection = () => {
-  return createConnection({
-    host: "localhost",
-    user: "root",
-    // eslint-disable-next-line no-undef
-    password: process.env.password,
-    database: "sys",
-    port: "3306",
-  });
-};
 
 export const addFabric = (req, res) => {
   const userID = 1;
