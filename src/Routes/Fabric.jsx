@@ -3,8 +3,25 @@ import Button from '@mui/material/Button';
 import NavBar from '../Components/NavBar/NavBar';
 import FabricCard from '../Components/FabricCard/FabricCard';
 import '../Styles/index.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Fabric = () => {
+  const [fabric, setFabric] = useState([]);
+
+  useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get("http://localhost:8080/fabric/get");
+          setFabric(response.data); 
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
     return (
       <div className='background'>
         <div className="navWrapper">
@@ -17,7 +34,14 @@ const Fabric = () => {
             </Link>
           </div>
           <div className='cardWrapper'>
-            <FabricCard /> <FabricCard />
+          {fabric.map((fabric) => (
+            <FabricCard 
+                key={fabric.id} 
+                userID={fabric.userID}
+                fabricName={fabric.fabricName}
+            />
+          ))}
+            <FabricCard />
           </div>
         </div>
       </div>

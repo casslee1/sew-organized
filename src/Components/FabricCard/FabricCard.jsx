@@ -5,8 +5,9 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { Link } from "react-router-dom";
 import styles from './fabricCard.module.css'
+import PropTypes from 'prop-types';
 
-export default function FabricCard() {
+export default function FabricCard({ fabricName }) {
     return (
       <div className={styles.fabricCardContainer}>
         <Card sx={{ maxWidth: 345 }}>
@@ -19,7 +20,7 @@ export default function FabricCard() {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Fabric Name
+                Fabric Name: {fabricName}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 TBD
@@ -30,3 +31,7 @@ export default function FabricCard() {
       </div>
         );
     }
+
+    FabricCard.propTypes = {
+      fabricName: PropTypes.string,
+  }

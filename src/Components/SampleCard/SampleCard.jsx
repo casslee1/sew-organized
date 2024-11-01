@@ -4,7 +4,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { Link } from "react-router-dom";
-import styles from './sampleCard.module.css'
+import styles from './sampleCard.module.css';
+import PropTypes from 'prop-types';
 
 export default function SampleCard({ userID, sampleColumn }) {
     return (
@@ -31,4 +32,7 @@ export default function SampleCard({ userID, sampleColumn }) {
         );
     }
 
-
+    SampleCard.propTypes = {
+      userID: PropTypes.number,
+      sampleColumn: PropTypes.string,
+  }
