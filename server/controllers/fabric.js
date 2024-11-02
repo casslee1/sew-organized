@@ -8,8 +8,8 @@ app.use(cors());
 
 export const addFabric = (req, res) => {
   const userID = 1;
+  const fabricImage = req.file ? req.file.filename : null;
   const {
-    fabricImage = null,
     fabricName = null,
     length = null,
     width = null,
@@ -27,6 +27,7 @@ export const addFabric = (req, res) => {
     prewashed = null,
     notes = null,
   } = req.body;
+
   const con = setUpConnection();
   console.log(req.body);
 

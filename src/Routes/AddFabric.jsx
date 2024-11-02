@@ -25,19 +25,45 @@ const AddFabric = () => {
     
 
         const handleSubmit = async (event) => {
-            let body = {userID:1};
             event.preventDefault();
+
             const formData = new FormData(event.target);
-            for (let [key, value] of formData.entries()) {
-                body[key] = value;
-            }
 
-            body["fibreType"] = fibreType;
-            body["dominantColour"] = dominantColour;
+            formData.append("userID", 1);
+            formData.append("fibreType", JSON.stringify(fibreType));
+            formData.append("dominantColour", dominantColour);
 
-            const response = await axios.put("http://localhost:8080/fabric/add", body)
+            try {
+            const response = await axios.put("http://localhost:8080/fabric/add", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            })
             console.log(response);
+        } catch (error) {
+            console.error("Error uploading fabric:", error);
+        }
         };
+
+        // const [solidOrPrint, setSolidOrPrint] = useState('');
+        // const [dominantColour, setDominantColour] = useState('');
+        // const [fibreType, setFibreType] = useState([]);
+        
+    
+        //     const handleSubmit = async (event) => {
+        //         let body = {userID:1};
+        //         event.preventDefault();
+        //         const formData = new FormData(event.target);
+        //         for (let [key, value] of formData.entries()) {
+        //             body[key] = value;
+        //         }
+    
+        //         body["fibreType"] = fibreType;
+        //         body["dominantColour"] = dominantColour;
+    
+        //         const response = await axios.put("http://localhost:8080/fabric/add", body)
+        //         console.log(response);
+        //     };
 
 
       const fibreTypesList = [
@@ -70,7 +96,7 @@ const AddFabric = () => {
         <div className="entryFormWrapper">
             <h1>Add Fabric</h1>
             <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <FormLabel>Add image</FormLabel>
                     <TextField 

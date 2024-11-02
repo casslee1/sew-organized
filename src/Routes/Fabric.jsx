@@ -13,6 +13,7 @@ const Fabric = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get("http://localhost:8080/fabric/get");
+          console.log("Fetched fabric data:", response.data); // Log to check data
           setFabric(response.data); 
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -39,9 +40,9 @@ const Fabric = () => {
                 key={fabric.id} 
                 userID={fabric.userID}
                 fabricName={fabric.fabricName}
+                fabricImage={fabric.fabricImage}
             />
           ))}
-            <FabricCard />
           </div>
         </div>
       </div>
