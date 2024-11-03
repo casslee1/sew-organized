@@ -39,3 +39,4 @@ export default function FabricCard({ fabricName, fabricImage }) {
       fabricName: PropTypes.string,
       fabricImage: PropTypes.string
   }
+  

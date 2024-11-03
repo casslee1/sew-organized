@@ -8,11 +8,27 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Projects = () => {
 
   const [projectStatus, setProjectStatus] = useState('');
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/projects/get");
+        console.log("Fetched fabric data:", response.data);
+        setProjects(response.data); 
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
     return (
       <div className='background'>
@@ -42,7 +58,14 @@ const Projects = () => {
             </Link>
           </div>
           <div className='cardWrapper'>
-            <ProjectCard /> <ProjectCard />
+            {projects.map((projects) => (
+              <ProjectCard 
+                key={projects.id}
+                userID={projects.userID}
+                projectName={projects.projectName}
+                projectImage={projects.projectImage}
+              />
+            ))}
           </div>
         </div>
       </div>

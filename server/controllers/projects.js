@@ -8,6 +8,7 @@ app.use(cors());
 
 export const addProject = (req, res) => {
   const userID = 1;
+  const projectImage = req.file ? req.file.filename : null;
   const pattern = "TBD";
   const fabric = "TBD";
   const {
@@ -28,6 +29,7 @@ export const addProject = (req, res) => {
 
   let sql = `INSERT INTO projects
   (userID, 
+  projectImage,
   projectName, 
   pattern,
   fabric,
@@ -43,6 +45,7 @@ export const addProject = (req, res) => {
   notes)
   VALUES 
   (${userID}, 
+  ${projectImage ? `'${projectImage}'` : "NULL"}, 
   ${projectName ? `'${projectName}'` : "NULL"},
   '${pattern}',
   '${fabric}', 

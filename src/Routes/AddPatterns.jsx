@@ -25,26 +25,50 @@ const AddPatterns = () => {
     const [cutOut, setCutOut] = useState('');
 
     const handleSubmit = async (event) => {
-        let body = {userID:1};
         event.preventDefault();
-        const formData = new FormData(event.target);
-        for (let [key, value] of formData.entries()) {
-            body[key] = value;
-        }
 
-        body["patternCompany"] = patternCompany;
-        body["patternType"] = patternType;
+        const formData = new FormData(event.target);
+
+       formData.append("userID", 1);
+       formData.append("patternCompany", patternCompany);
+       formData.append("patternType", patternType);
+       formData.append("printOrPDF", printOrPDF);
+       formData.append("cutOut", cutOut);
+    
+        try {
+        const response = await axios.put("http://localhost:8080/patterns/add", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+        console.log(response);
+        } catch (error) {
+            console.error("Error uploading pattern:", error);
+        }
+      };
+    
+
+    //   const handleSubmit = async (event) => {
+    //     let body = {userID:1};
+    //     event.preventDefault();
+    //     const formData = new FormData(event.target);
+    //     for (let [key, value] of formData.entries()) {
+    //         body[key] = value;
+    //     }
+
+    //     body["patternCompany"] = patternCompany;
+    //     body["patternType"] = patternType;
         
 
-        const response = await axios.put("http://localhost:8080/patterns/add", body)
-        console.log(response);
-      };
+    //     const response = await axios.put("http://localhost:8080/patterns/add", body)
+    //     console.log(response);
+    //   };
 
     return (
         <div className="entryFormWrapper">
             <h1>Add a Pattern</h1>
             <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <FormLabel>Add image</FormLabel>
                     <TextField 

@@ -14,27 +14,53 @@ import {useState} from 'react';
 const AddProjects = () => {
 
     const [projectStatus, setProjectStatus] = useState("");
+    const [haveAllSupplies, setHaveAllSupplies] = useState(""); 
 
     const handleSubmit = async (event) => {
-        let body = {userID:1,  pattern: "TBD", fabric: "TBD"};
         event.preventDefault();
+
         const formData = new FormData(event.target);
-        for (let [key, value] of formData.entries()) {
-            body[key] = value;
+               
+        formData.append("userID", 1);
+        formData.append("pattern", "TBD");
+        formData.append("fabric", "TBD");
+
+        try {
+            const response = await axios.put("http://localhost:8080/projects/add", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            })
+            console.log(response);
+        } catch (error) {
+            console.error("Error uploading fabric:", error);
         }
-
-        const response = await axios.put("http://localhost:8080/projects/add", body)
-        console.log(response);
-
         event.target.reset();
         setProjectStatus("");
+        setHaveAllSupplies("");
     };
+
+    // const handleSubmit = async (event) => {
+    //     let body = {userID:1,  pattern: "TBD", fabric: "TBD"};
+    //     event.preventDefault();
+    //     const formData = new FormData(event.target);
+    //     for (let [key, value] of formData.entries()) {
+    //         body[key] = value;
+    //     }
+
+    //     const response = await axios.put("http://localhost:8080/projects/add", body)
+    //     console.log(response);
+
+    //     event.target.reset();
+    //     setProjectStatus("");
+    // };
+
 
     return (
         <div className="entryFormWrapper">
             <h1>Add a Project</h1>
             <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <FormLabel>Add image</FormLabel>
                     <TextField 
@@ -107,16 +133,19 @@ const AddProjects = () => {
                 <div>
                     <FormControl>
                         <FormLabel>Have all supplies?</FormLabel> {/*If no include way to make list of supplies needed */}
-                        <RadioGroup>
+                        <RadioGroup
+                            value = {haveAllSupplies}
+                            onChange={(e) => setHaveAllSupplies(e.target.value)}
+                        >
                             <FormControlLabel 
                                 value="yes" 
-                                name="haveSupplies" 
+                                name="haveAllSupplies" 
                                 control={<Radio />} 
                                 label="Yes" 
                             />
                             <FormControlLabel 
                                 value="no" 
-                                name="haveSupplies" 
+                                name="haveAllSupplies" 
                                 control={<Radio />} 
                                 label="No" 
                             />

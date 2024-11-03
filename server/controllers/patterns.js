@@ -8,8 +8,8 @@ app.use(cors());
 
 export const addPattern = (req, res) => {
   const userID = 1;
+  const patternImage = req.file ? req.file.filename : null;
   const {
-    patternImage = null,
     patternCompany = null,
     otherPatternCompany = null,
     patternNumber = null,
@@ -30,6 +30,7 @@ export const addPattern = (req, res) => {
     purchasedFrom = null,
     notes = null,
   } = req.body;
+
   const con = setUpConnection();
   console.log(req.body);
 
