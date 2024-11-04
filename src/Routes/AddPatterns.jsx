@@ -22,7 +22,10 @@ const AddPatterns = () => {
     const [patternCompany, setPatternCompany] = useState('');
     const [patternType, setPatternType] = useState('');
     const [printOrPDF, setPrintOrPDF] = useState('');
+    const [isPDFPrinted, setIsPDFPrinted] = useState('');
     const [cutOut, setCutOut] = useState('');
+    const [forWovenOrKnit, setForWovenOrKnit] = useState('');
+    const [formKey, setFormKey] = useState(0);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -31,9 +34,6 @@ const AddPatterns = () => {
 
        formData.append("userID", 1);
        formData.append("patternCompany", patternCompany);
-       formData.append("patternType", patternType);
-       formData.append("printOrPDF", printOrPDF);
-       formData.append("cutOut", cutOut);
     
         try {
         const response = await axios.put("http://localhost:8080/patterns/add", formData, {
@@ -45,30 +45,21 @@ const AddPatterns = () => {
         } catch (error) {
             console.error("Error uploading pattern:", error);
         }
+
+        setFormKey((prevKey) => prevKey + 1);
+        setPatternCompany('');
+        setPatternType('');
+        setPrintOrPDF('');
+        setIsPDFPrinted('');
+        setCutOut('');
+        setForWovenOrKnit('');
       };
-    
-
-    //   const handleSubmit = async (event) => {
-    //     let body = {userID:1};
-    //     event.preventDefault();
-    //     const formData = new FormData(event.target);
-    //     for (let [key, value] of formData.entries()) {
-    //         body[key] = value;
-    //     }
-
-    //     body["patternCompany"] = patternCompany;
-    //     body["patternType"] = patternType;
-        
-
-    //     const response = await axios.put("http://localhost:8080/patterns/add", body)
-    //     console.log(response);
-    //   };
 
     return (
         <div className="entryFormWrapper">
             <h1>Add a Pattern</h1>
             <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form key={formKey} onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <FormLabel>Add image</FormLabel>
                     <TextField 
@@ -282,7 +273,10 @@ const AddPatterns = () => {
                     <div>
                         <FormControl>
                             <FormLabel>Is PDF printed?</FormLabel>
-                            <RadioGroup>
+                            <RadioGroup
+                                 value={isPDFPrinted}
+                                 onChange={(event) => setIsPDFPrinted(event.target.value)}
+                            >
                                 <FormControlLabel value="printed" name="isPDFPrinted" control={<Radio />} label="Yes" />
                                 <FormControlLabel value="not printed" name="isPDFPrinted" control={<Radio />} label="No" />
                             </RadioGroup>
@@ -355,7 +349,10 @@ const AddPatterns = () => {
                 <div>
                     <FormControl>
                         <FormLabel>For woven or knit?</FormLabel>
-                        <RadioGroup>
+                        <RadioGroup
+                            value={forWovenOrKnit}
+                            onChange={(event) => setForWovenOrKnit(event.target.value)}
+                        >
                             <FormControlLabel value="woven" name="forWovenOrKnit" control={<Radio />} label="Woven" />
                             <FormControlLabel value="knit" name="forWovenOrKnit" control={<Radio />} label="Knit" />
                         </RadioGroup>

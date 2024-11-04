@@ -22,6 +22,7 @@ const AddFabric = () => {
     const [solidOrPrint, setSolidOrPrint] = useState('');
     const [dominantColour, setDominantColour] = useState('');
     const [fibreType, setFibreType] = useState([]);
+    const [formKey, setFormKey] = useState(0);
     
 
         const handleSubmit = async (event) => {
@@ -43,28 +44,12 @@ const AddFabric = () => {
         } catch (error) {
             console.error("Error uploading fabric:", error);
         }
+
+        setFormKey((prevKey) => prevKey + 1);
+        setFibreType([]);
+        setDominantColour('');
+        setSolidOrPrint('');
         };
-
-        // const [solidOrPrint, setSolidOrPrint] = useState('');
-        // const [dominantColour, setDominantColour] = useState('');
-        // const [fibreType, setFibreType] = useState([]);
-        
-    
-        //     const handleSubmit = async (event) => {
-        //         let body = {userID:1};
-        //         event.preventDefault();
-        //         const formData = new FormData(event.target);
-        //         for (let [key, value] of formData.entries()) {
-        //             body[key] = value;
-        //         }
-    
-        //         body["fibreType"] = fibreType;
-        //         body["dominantColour"] = dominantColour;
-    
-        //         const response = await axios.put("http://localhost:8080/fabric/add", body)
-        //         console.log(response);
-        //     };
-
 
       const fibreTypesList = [
         'Cotton',
@@ -96,7 +81,7 @@ const AddFabric = () => {
         <div className="entryFormWrapper">
             <h1>Add Fabric</h1>
             <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form  key={formKey} onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <FormLabel>Add image</FormLabel>
                     <TextField 
@@ -189,7 +174,8 @@ const AddFabric = () => {
                     <FormControl>
                         <FormLabel>Solid or Print?</FormLabel>
                         <RadioGroup value={solidOrPrint}
-                            onChange={(event) => setSolidOrPrint(event.target.value)}>
+                            onChange={(event) => setSolidOrPrint(event.target.value)}
+                            >
                             
                             <FormControlLabel value="solid" name="solidOrPrint" control={<Radio />} label="Solid" />
                             <FormControlLabel value="print" name="solidOrPrint" control={<Radio />} label="Print" />

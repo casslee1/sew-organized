@@ -40,22 +40,6 @@ const AddProjects = () => {
         setHaveAllSupplies("");
     };
 
-    // const handleSubmit = async (event) => {
-    //     let body = {userID:1,  pattern: "TBD", fabric: "TBD"};
-    //     event.preventDefault();
-    //     const formData = new FormData(event.target);
-    //     for (let [key, value] of formData.entries()) {
-    //         body[key] = value;
-    //     }
-
-    //     const response = await axios.put("http://localhost:8080/projects/add", body)
-    //     console.log(response);
-
-    //     event.target.reset();
-    //     setProjectStatus("");
-    // };
-
-
     return (
         <div className="entryFormWrapper">
             <h1>Add a Project</h1>
