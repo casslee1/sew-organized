@@ -34,6 +34,9 @@ const AddPatterns = () => {
 
        formData.append("userID", 1);
        formData.append("patternCompany", patternCompany);
+
+       const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+       formData.append("entryDate", entryDate)
     
         try {
         const response = await axios.put("http://localhost:8080/patterns/add", formData, {

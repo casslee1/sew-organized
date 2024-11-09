@@ -23,6 +23,7 @@ export const addProject = (req, res) => {
     threadUsed = null,
     fittingNotes = null,
     notes = null,
+    entryDate = null,
   } = req.body;
   const con = setUpConnection();
   console.log(req.body);
@@ -42,7 +43,8 @@ export const addProject = (req, res) => {
   lengthOfFabricUsed, 
   threadUsed, 
   fittingNotes, 
-  notes)
+  notes,
+  entryDate)
   VALUES 
   (${userID}, 
   ${projectImage ? `'${projectImage}'` : "NULL"}, 
@@ -58,7 +60,8 @@ export const addProject = (req, res) => {
   ${lengthOfFabricUsed ? `'${lengthOfFabricUsed}'` : "NULL"}, 
   ${threadUsed ? `'${threadUsed}'` : "NULL"}, 
   ${fittingNotes ? `'${fittingNotes}'` : "NULL"}, 
-  ${notes ? `'${notes}'` : "NULL"})`;
+  ${notes ? `'${notes}'` : "NULL"},
+  ${entryDate ? `'${entryDate}'` : "NULL"})`;
 
   con.query(sql, (err, rows) => {
     con.destroy();
@@ -69,6 +72,8 @@ export const addProject = (req, res) => {
     }
   });
 };
+
+//fetch fabrics
 
 export const getProject = (req, res) => {
   const con = setUpConnection();

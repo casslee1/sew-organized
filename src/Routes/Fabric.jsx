@@ -13,7 +13,7 @@ const Fabric = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get("http://localhost:8080/fabric/get");
-          console.log("Fetched fabric data:", response.data); // Log to check data
+          console.log("Fetched fabric data:", response.data);
           setFabric(response.data); 
         } catch (error) {
           console.error("Error fetching data:", error);

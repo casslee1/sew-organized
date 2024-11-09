@@ -23,18 +23,20 @@ const AddFabric = () => {
     const [dominantColour, setDominantColour] = useState('');
     const [fibreType, setFibreType] = useState([]);
     const [formKey, setFormKey] = useState(0);
-    
+   
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-        const handleSubmit = async (event) => {
-            event.preventDefault();
+        const formData = new FormData(event.target);
 
-            const formData = new FormData(event.target);
+        formData.append("userID", 1);
+        formData.append("fibreType", JSON.stringify(fibreType));
+        formData.append("dominantColour", dominantColour);     
 
-            formData.append("userID", 1);
-            formData.append("fibreType", JSON.stringify(fibreType));
-            formData.append("dominantColour", dominantColour);
+        const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        formData.append("entryDate", entryDate)
 
-            try {
+        try {
             const response = await axios.put("http://localhost:8080/fabric/add", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -49,7 +51,7 @@ const AddFabric = () => {
         setFibreType([]);
         setDominantColour('');
         setSolidOrPrint('');
-        };
+    };
 
       const fibreTypesList = [
         'Cotton',

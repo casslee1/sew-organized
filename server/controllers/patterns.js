@@ -29,6 +29,7 @@ export const addPattern = (req, res) => {
     recommendedFabricTypes = null,
     purchasedFrom = null,
     notes = null,
+    entryDate = null,
   } = req.body;
 
   const con = setUpConnection();
@@ -55,7 +56,8 @@ export const addPattern = (req, res) => {
     forWovenOrKnit,
     recommendedFabricTypes,
     purchasedFrom,
-    notes) 
+    notes,
+    entryDate) 
     VALUES 
     (${userID}, 
     ${patternImage ? `'${patternImage}'` : "NULL"}, 
@@ -77,7 +79,8 @@ export const addPattern = (req, res) => {
     ${forWovenOrKnit ? `'${forWovenOrKnit}'` : "NULL"}, 
     ${recommendedFabricTypes ? `'${recommendedFabricTypes}'` : "NULL"}, 
     ${purchasedFrom ? `'${purchasedFrom}'` : "NULL"}, 
-    ${notes ? `'${notes}'` : "NULL"})`;
+    ${notes ? `'${notes}'` : "NULL"},
+    ${entryDate ? `'${entryDate}'` : "NULL"})`;
 
   con.query(sql, (err, rows) => {
     con.destroy();

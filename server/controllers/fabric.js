@@ -9,6 +9,7 @@ app.use(cors());
 export const addFabric = (req, res) => {
   const userID = 1;
   const fabricImage = req.file ? req.file.filename : null;
+  //const entryDate = new Date().toISOString().slice(0, 19).replace("T", " ");
   const {
     fabricName = null,
     length = null,
@@ -26,6 +27,7 @@ export const addFabric = (req, res) => {
     price = null,
     prewashed = null,
     notes = null,
+    entryDate = null,
   } = req.body;
 
   const con = setUpConnection();
@@ -49,27 +51,33 @@ export const addFabric = (req, res) => {
   purchasedFrom, 
   price, 
   prewashed, 
-  notes) 
-  VALUES (${userID}, 
-  ${fabricImage ? `'${fabricImage}'` : "NULL"}, 
-  ${fabricName ? `'${fabricName}'` : "NULL"}, 
-  ${length ? `'${length}'` : "NULL"}, 
-  ${width ? `'${width}'` : "NULL"}, 
-  ${fibreType ? `'${fibreType}'` : "NULL"}, 
-  ${otherFibreType ? `'${otherFibreType}'` : "NULL"}, 
-  ${wovenOrKnit ? `'${wovenOrKnit}'` : "NULL"}, 
-  ${fabricType ? `'${fabricType}'` : "NULL"}, 
-  ${solidOrPrint ? `'${solidOrPrint}'` : "NULL"}, 
-  ${printType ? `'${printType}'` : "NULL"}, 
-  ${dominantColour ? `'${dominantColour}'` : "NULL"}, 
-  ${otherColour ? `'${otherColour}'` : "NULL"}, 
-  ${purchaseDate ? `'${purchaseDate}'` : "NULL"}, 
-  ${purchasedFrom ? `'${purchasedFrom}'` : "NULL"}, 
-  ${price ? `'${price}'` : "NULL"}, 
-  ${prewashed ? `'${prewashed}'` : "NULL"}, 
-  ${notes ? `'${notes}'` : "NULL"})`;
+  notes,
+  entryDate) 
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-  con.query(sql, (err, rows) => {
+  const values = [
+    userID,
+    fabricImage,
+    fabricName,
+    length || null,
+    width || null,
+    fibreType || null,
+    otherFibreType || null,
+    wovenOrKnit || null,
+    fabricType || null,
+    solidOrPrint || null,
+    printType || null,
+    dominantColour || null,
+    otherColour || null,
+    purchaseDate || null,
+    purchasedFrom || null,
+    price || null,
+    prewashed || null,
+    notes || null,
+    entryDate || null,
+  ];
+
+  con.query(sql, values, (err, rows) => {
     con.destroy();
     if (!err) {
       res.send(JSON.stringify(rows));

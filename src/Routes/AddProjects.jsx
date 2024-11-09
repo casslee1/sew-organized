@@ -25,6 +25,9 @@ const AddProjects = () => {
         formData.append("pattern", "TBD");
         formData.append("fabric", "TBD");
 
+        const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        formData.append("entryDate", entryDate)
+
         try {
             const response = await axios.put("http://localhost:8080/projects/add", formData, {
                 headers: {
