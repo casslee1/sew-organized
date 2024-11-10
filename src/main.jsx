@@ -16,6 +16,9 @@ import FabricEntry from './Routes/FabricEntry';
 import PatternEntry from './Routes/PatternEntry';
 import ProjectEntry from './Routes/ProjectEntry';
 import SampleEntry from './Routes/SampleEntry';
+// import EditPattern from './Routes/EditPattern';
+// import EditProject from './Routes/EditProject';
+// import EditFabric from './Routes/EditFabric';
 import '../src/Styles/index.css';
 
 
@@ -80,6 +83,18 @@ const router = createBrowserRouter([
     path: "sampleentry",
     element: <SampleEntry />,
   },
+  // {
+  //   path: "editproject",
+  //   element: <EditProject />,
+  // },
+  // {
+  //   path: "editpattern",
+  //   element: <EditPattern />,
+  // },
+  // {
+  //   path: "editfabric",
+  //   element: <EditFabric />,
+  // },
 ]);
 
 
