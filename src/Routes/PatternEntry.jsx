@@ -4,6 +4,8 @@ import ListItemText from '@mui/material/ListItemText';
 import '../Styles/itemPage.css';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
 import axios from "axios";
 
 const PatternEntry = () => {
@@ -85,6 +87,9 @@ const PatternEntry = () => {
             </ListItem>
           </List>
         </div>
+          <Link to="../editpattern">
+            <Button variant="contained" sx={{background:'#9fdbcd'}}>Edit Pattern</Button>
+          </Link>
       </div>
     );
   };

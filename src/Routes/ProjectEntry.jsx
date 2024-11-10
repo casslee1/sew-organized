@@ -4,6 +4,8 @@ import ListItemText from '@mui/material/ListItemText';
 import '../Styles/itemPage.css';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
 import axios from "axios";
 
 const ProjectEntry = () => {
@@ -77,6 +79,9 @@ const ProjectEntry = () => {
             </ListItem>
           </List>
         </div>
+        <Link to="../editproject">
+          <Button variant="contained" sx={{background:'#9fdbcd'}}>Edit Project</Button>
+        </Link>
       </div>
     );
   };

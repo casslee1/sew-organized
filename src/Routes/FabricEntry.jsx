@@ -4,6 +4,8 @@ import ListItemText from '@mui/material/ListItemText';
 import '../Styles/itemPage.css';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
 import axios from "axios";
 
 
@@ -76,6 +78,9 @@ const FabricEntry = () => {
             </ListItem>
           </List>
         </div>
+        <Link to="../editfabric">
+          <Button variant="contained" sx={{background:'#9fdbcd'}}>Edit Fabric</Button>
+        </Link>
       </div>
     );
   };
