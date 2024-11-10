@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 import styles from './fabricCard.module.css'
 import PropTypes from 'prop-types';
 
-export default function FabricCard({ fabricName, fabricImage }) {
+export default function FabricCard({ id, fabricName, fabricImage }) {
 
   const imageUrl = fabricImage ? `http://localhost:8080/uploads/${fabricImage}` : "src/Images/velvetFabric.png";
 
     return (
       <div className={styles.fabricCardContainer}>
         <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea component={Link} to="/fabricentry">
+          <CardActionArea component={Link} to={`/fabricentry/${id}`}>
             <CardMedia
               component="img"
               height="140"
@@ -36,6 +36,7 @@ export default function FabricCard({ fabricName, fabricImage }) {
     }
 
     FabricCard.propTypes = {
+      id: PropTypes.number.isRequired,
       fabricName: PropTypes.string,
       fabricImage: PropTypes.string
   }

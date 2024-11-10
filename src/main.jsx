@@ -68,7 +68,7 @@ const router = createBrowserRouter([
     element: <AddSample />,
   },
   {
-    path: "fabricentry",
+    path: "fabricentry/:id",
     element: <FabricEntry />,
   },
   {

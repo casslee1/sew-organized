@@ -38,6 +38,7 @@ const Fabric = () => {
           {fabric.map((fabric) => (
             <FabricCard 
                 key={fabric.id} 
+                id={fabric.id}
                 userID={fabric.userID}
                 fabricName={fabric.fabricName}
                 fabricImage={fabric.fabricImage}

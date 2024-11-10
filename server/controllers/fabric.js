@@ -9,7 +9,7 @@ app.use(cors());
 export const addFabric = (req, res) => {
   const userID = 1;
   const fabricImage = req.file ? req.file.filename : null;
-  //const entryDate = new Date().toISOString().slice(0, 19).replace("T", " ");
+
   const {
     fabricName = null,
     length = null,
@@ -97,6 +97,27 @@ export const getFabric = (req, res) => {
       res.send(JSON.stringify(rows));
     } else {
       console.log("Error while performing Query.", err);
+    }
+  });
+};
+
+export const getFabricByID = (req, res) => {
+  const { id } = req.params;
+  const con = setUpConnection();
+
+  let sql = `SELECT * FROM fabric WHERE id = ?`;
+
+  con.query(sql, [id], (err, rows) => {
+    con.destroy();
+    if (!err) {
+      if (rows.length > 0) {
+        res.send(JSON.stringify(rows[0]));
+      } else {
+        res.status(404).send({ message: "Fabric not found" });
+      }
+    } else {
+      console.log("Error while performing Query.", err);
+      res.status(500).send({ message: "Server error" });
     }
   });
 };
