@@ -10,30 +10,22 @@ import axios from "axios";
 const FabricEntry = () => {
   const { id } = useParams();
   const [fabric, setFabric] = useState(null);
-  const [error, setError] = useState(null); // Track errors
 
   useEffect(() => {
     const fetchFabric = async () => {
-      console.log("Fetching fabric data for ID:", id); // Debug log
       try {
         const response = await axios.get(`http://localhost:8080/fabric/${id}`);
-        console.log("Fabric data received:", response.data); // Debug log
         setFabric(response.data);
       } catch (error) {
         console.error("Error fetching fabric details:", error);
-        setError("Failed to load fabric data."); // Set error message
       }
     };
 
     fetchFabric();
   }, [id]);
 
-  if (error) {
-    return <div>{error}</div>; // Display error message
-  }
-
   if (!fabric) {
-    return <div>Loading...</div>;
+    return <div>Fabric not found</div>;
   }
 
     return (

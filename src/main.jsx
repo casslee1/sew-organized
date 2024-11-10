@@ -72,11 +72,11 @@ const router = createBrowserRouter([
     element: <FabricEntry />,
   },
   {
-    path: "patternentry",
+    path: "patternentry/:id",
     element: <PatternEntry />,
   },
   {
-    path: "projectentry",
+    path: "projectentry/:id",
     element: <ProjectEntry />,
   },
   {

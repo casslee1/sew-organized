@@ -61,6 +61,7 @@ const Projects = () => {
             {projects.map((projects) => (
               <ProjectCard 
                 key={projects.id}
+                id={projects.id}
                 userID={projects.userID}
                 projectName={projects.projectName}
                 projectImage={projects.projectImage}

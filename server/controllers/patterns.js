@@ -105,3 +105,24 @@ export const getPattern = (req, res) => {
     }
   });
 };
+
+export const getPatternByID = (req, res) => {
+  const { id } = req.params;
+  const con = setUpConnection();
+
+  let sql = `SELECT * FROM patterns WHERE id = ?`;
+
+  con.query(sql, [id], (err, rows) => {
+    con.destroy();
+    if (!err) {
+      if (rows.length > 0) {
+        res.send(JSON.stringify(rows[0]));
+      } else {
+        res.status(404).send({ message: "Pattern not found" });
+      }
+    } else {
+      console.log("Error while performing Query.", err);
+      res.status(500).send({ message: "Server error" });
+    }
+  });
+};

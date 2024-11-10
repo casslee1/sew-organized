@@ -38,6 +38,7 @@ const Patterns = () => {
             {patterns.map((patterns) => (
             <PatternCard 
             key={patterns.id} 
+            id={patterns.id}
             userID={patterns.userID}
             patternName={patterns.patternName}
             patternImage={patterns.patternImage}

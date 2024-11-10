@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 import styles from './projectCard.module.css'
 import PropTypes from 'prop-types';
 
-export default function ProjectCard({ projectName, projectImage }) {
+export default function ProjectCard({ id, projectName, projectImage }) {
 
   const imageUrl = projectImage ? `http://localhost:8080/uploads/${projectImage}` : "src/Images/velvetFabric.png";
 
     return (
       <div className={styles.projectCardContainer}>
         <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea component={Link} to="/projectentry">
+          <CardActionArea component={Link} to={`/projectentry/${id}`}>
             <CardMedia
               component="img"
               height="140"
@@ -36,6 +36,7 @@ export default function ProjectCard({ projectName, projectImage }) {
     }
 
     ProjectCard.propTypes = {
+      id: PropTypes.number.isRequired,
       projectName: PropTypes.string,
       projectImage: PropTypes.string,
     }

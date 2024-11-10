@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 import styles from './patternCard.module.css'
 import PropTypes from 'prop-types';
 
-export default function PatternCard({ patternName, patternImage }) {
+export default function PatternCard({ id, patternName, patternImage }) {
 
   const imageUrl = patternImage ? `http://localhost:8080/uploads/${patternImage}` : "src/Images/velvetFabric.png";
 
     return (
       <div className={styles.patternCardContainer}>
         <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea component={Link} to="/patternentry">
+          <CardActionArea component={Link} to={`/patternentry/${id}`}>
             <CardMedia
               component="img"
               height="140"
@@ -36,6 +36,7 @@ export default function PatternCard({ patternName, patternImage }) {
     }
     
     PatternCard.propTypes = {
+      id: PropTypes.number.isRequired,
       patternName: PropTypes.string,
       patternImage: PropTypes.string
   }
