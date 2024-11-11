@@ -101,6 +101,20 @@ export const getFabric = (req, res) => {
   });
 };
 
+export const getFabricName = (req, res) => {
+  const con = setUpConnection();
+  let sql = `SELECT fabricName FROM fabric`;
+
+  con.query(sql, (err, rows) => {
+    con.destroy();
+    if (!err) {
+      res.send(JSON.stringify(rows));
+    } else {
+      console.log("Error while performing Query.", err);
+    }
+  });
+};
+
 export const getFabricByID = (req, res) => {
   const { id } = req.params;
   const con = setUpConnection();

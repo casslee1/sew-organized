@@ -10,8 +10,8 @@ export const addProject = (req, res) => {
   const userID = 1;
   const projectImage = req.file ? req.file.filename : null;
   const pattern = "TBD";
-  const fabric = "TBD";
   const {
+    fabric = null,
     projectName = null,
     projectStatus = null,
     haveAllSupplies = null,
@@ -50,7 +50,7 @@ export const addProject = (req, res) => {
   ${projectImage ? `'${projectImage}'` : "NULL"}, 
   ${projectName ? `'${projectName}'` : "NULL"},
   '${pattern}',
-  '${fabric}', 
+  ${fabric ? `'${projectName}'` : "NULL"}, 
   ${projectStatus ? `'${projectStatus}'` : "NULL"}, 
   ${haveAllSupplies ? `'${haveAllSupplies}'` : "NULL"}, 
   ${deadline ? `'${deadline}'` : "NULL"}, 

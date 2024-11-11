@@ -1,6 +1,7 @@
 import { FormControl, FormLabel} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';	
+import MenuItem from "@mui/material/MenuItem";
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -9,12 +10,22 @@ import '../Styles/entryForm.css';
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
 import axios from "axios";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 const AddProjects = () => {
 
     const [projectStatus, setProjectStatus] = useState("");
     const [haveAllSupplies, setHaveAllSupplies] = useState(""); 
+    const [fabrics, setFabrics] = useState([]);
+    const [selectedFabric, setSelectedFabric] = useState("");
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/fabric/getFabricName")
+        .then(response => setFabrics(response.data))
+        .catch(error => console.error("Error fetching fabrics", error));
+    }, []);
+
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -23,8 +34,7 @@ const AddProjects = () => {
                
         formData.append("userID", 1);
         formData.append("pattern", "TBD");
-        formData.append("fabric", "TBD");
-
+        
         const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
         formData.append("entryDate", entryDate)
 
@@ -41,6 +51,7 @@ const AddProjects = () => {
         event.target.reset();
         setProjectStatus("");
         setHaveAllSupplies("");
+        setSelectedFabric("");
     };
 
     return (
@@ -70,12 +81,28 @@ const AddProjects = () => {
                     <FormLabel>Pattern</FormLabel>
                     {/*dropdown populated from user's patterns with text box if pattern not in stash */}
                 {/* </div>
-                <br />
+                <br /> */}
                 <div>
-                    <FormLabel>Fabric</FormLabel> */}
-                    {/*dropdown populated from user's fabrics with text box if fabric not in stash */}
-                {/* </div>
-                <br /> */} 
+                    <FormLabel>Fabric</FormLabel>
+                    <TextField
+                        select
+                        name="fabric"
+                        value={selectedFabric}
+                        sx={{ width: 380 }}
+                        onChange={(event) => setSelectedFabric(event.target.value)} 
+                    >
+                       <MenuItem value="">
+                                <em>Select a fabric</em>
+                            </MenuItem>
+                            {fabrics.map((fabric, index) => (
+                                <MenuItem key={index} value={fabric.fabricName}>
+                                    {fabric.fabricName}
+                                </MenuItem>
+                            ))
+                        }
+                    </TextField>
+                </div>
+                <br />
                 <div>
                     <FormControl>
                         <FormLabel>Project Status</FormLabel>
