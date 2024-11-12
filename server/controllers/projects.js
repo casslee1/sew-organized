@@ -9,8 +9,8 @@ app.use(cors());
 export const addProject = (req, res) => {
   const userID = 1;
   const projectImage = req.file ? req.file.filename : null;
-  const pattern = "TBD";
   const {
+    pattern = null,
     fabric = null,
     projectName = null,
     projectStatus = null,
@@ -49,8 +49,8 @@ export const addProject = (req, res) => {
   (${userID}, 
   ${projectImage ? `'${projectImage}'` : "NULL"}, 
   ${projectName ? `'${projectName}'` : "NULL"},
-  '${pattern}',
-  ${fabric ? `'${projectName}'` : "NULL"}, 
+  ${pattern ? `'${pattern}'` : "NULL"},
+  ${fabric ? `'${fabric}'` : "NULL"}, 
   ${projectStatus ? `'${projectStatus}'` : "NULL"}, 
   ${haveAllSupplies ? `'${haveAllSupplies}'` : "NULL"}, 
   ${deadline ? `'${deadline}'` : "NULL"}, 

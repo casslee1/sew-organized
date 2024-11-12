@@ -18,6 +18,8 @@ const AddProjects = () => {
     const [haveAllSupplies, setHaveAllSupplies] = useState(""); 
     const [fabrics, setFabrics] = useState([]);
     const [selectedFabric, setSelectedFabric] = useState("");
+    const [patterns, setPatterns] = useState([]);
+    const [selectedPattern, setSelectedPattern] = useState("");
 
     useEffect(() => {
         axios.get("http://localhost:8080/fabric/getFabricName")
@@ -25,7 +27,11 @@ const AddProjects = () => {
         .catch(error => console.error("Error fetching fabrics", error));
     }, []);
 
-
+    useEffect(() => {
+        axios.get("http://localhost:8080/patterns/getPatternName")
+        .then(response => setPatterns(response.data))
+        .catch(error => console.error("Error fetching fabrics", error));
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -33,8 +39,7 @@ const AddProjects = () => {
         const formData = new FormData(event.target);
                
         formData.append("userID", 1);
-        formData.append("pattern", "TBD");
-        
+               
         const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
         formData.append("entryDate", entryDate)
 
@@ -52,6 +57,7 @@ const AddProjects = () => {
         setProjectStatus("");
         setHaveAllSupplies("");
         setSelectedFabric("");
+        setSelectedPattern("");
     };
 
     return (
@@ -77,11 +83,27 @@ const AddProjects = () => {
                     />
                 </div>
                 <br />
-                {/* <div>
+                <div>
                     <FormLabel>Pattern</FormLabel>
-                    {/*dropdown populated from user's patterns with text box if pattern not in stash */}
-                {/* </div>
-                <br /> */}
+                    <TextField
+                        select
+                        name="pattern"
+                        value={selectedPattern}
+                        sx={{ width: 380 }}
+                        onChange={(event) => setSelectedPattern(event.target.value)} 
+                    >
+                       <MenuItem value="">
+                                <em>Select a fabric</em>
+                            </MenuItem>
+                            {patterns.map((pattern, index) => (
+                                <MenuItem key={index} value={pattern.patternName}>
+                                    {pattern.patternName}
+                                </MenuItem>
+                            ))
+                        }
+                    </TextField>
+                </div>
+                <br />
                 <div>
                     <FormLabel>Fabric</FormLabel>
                     <TextField

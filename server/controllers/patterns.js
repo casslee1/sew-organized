@@ -106,6 +106,20 @@ export const getPattern = (req, res) => {
   });
 };
 
+export const getPatternName = (req, res) => {
+  const con = setUpConnection();
+  let sql = `SELECT patternName FROM patterns`;
+
+  con.query(sql, (err, rows) => {
+    con.destroy();
+    if (!err) {
+      res.send(JSON.stringify(rows));
+    } else {
+      console.log("Error while performing Query.", err);
+    }
+  });
+};
+
 export const getPatternByID = (req, res) => {
   const { id } = req.params;
   const con = setUpConnection();
