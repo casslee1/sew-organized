@@ -8,7 +8,7 @@ app.use(cors());
 
 export const addFabric = (req, res) => {
   const userID = 1;
-  const fabricImage = req.file ? req.file.filename : null;
+  const fabricImage = req?.file?.filename || null;
 
   const {
     fabricName = null,

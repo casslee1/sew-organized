@@ -41,16 +41,16 @@ const FabricEntry = () => {
               <ListItemText primary={`Name: ${fabric.fabricName}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Length: " />
+              <ListItemText primary={`Length: ${fabric.length}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Width: " />
+              <ListItemText primary={`Width: ${fabric.width}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Fibre type: " />
+              <ListItemText primary={`Fibre Type: ${ JSON.parse(fabric.fibreType).join(', ')}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Woven or knit: " />
+              <ListItemText primary={`Woven or knit: ${fabric.wovenOrKnit}`} />
             </ListItem>
             <ListItem>
               <ListItemText primary="Solid or print: " />
