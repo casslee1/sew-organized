@@ -65,7 +65,7 @@ const FabricEntry = () => {
               <ListItemText primary={`Dominant colour: ${fabric.dominantColour}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Date of purchase: ${fabric.purchaseDate}`} />
+              <ListItemText primary={`Date of purchase: ${fabric.purchaseDate ? fabric.purchaseDate.split('T')[0] : 'Not Entered'}`} />
             </ListItem>
             <ListItem>
               <ListItemText primary={`Purchased from: ${fabric.purchasedFrom}`} />

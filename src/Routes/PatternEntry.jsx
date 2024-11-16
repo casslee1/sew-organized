@@ -68,7 +68,7 @@ const PatternEntry = () => {
               <ListItemText primary={`Notions required: ${pattern.notionsRequired}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Purchase date: ${pattern.purchaseDate}`} />
+              <ListItemText primary={`Purchase date: ${pattern.purchaseDate ? pattern.purchaseDate.split('T')[0] : 'Not Entered'}`} />
             </ListItem>
             <ListItem>
               <ListItemText primary={`Year released: ${pattern.yearReleased}`} />

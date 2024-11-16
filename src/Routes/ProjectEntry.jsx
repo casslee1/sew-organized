@@ -54,13 +54,13 @@ const ProjectEntry = () => {
               <ListItemText primary={`Have all supplies: ${project.haveAllSupplies}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Deadline: ${project.deadline}`} />
+              <ListItemText primary={`Deadline: ${project.deadline ? project.deadline.split('T')[0] : 'Not Entered'}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Date started: ${project.startDate}`} />
+              <ListItemText primary={`Date started: ${project.startDate ? project.startDate.split('T')[0] : 'Not Entered'}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Date completed: ${project.dateCompleted}`} />
+              <ListItemText primary={`Date completed: ${project.dateCompleted ? project.dateCompleted.split('T')[0] : "Not Entered"}`} />
             </ListItem>
             <ListItem>
               <ListItemText primary={`Size: ${project.sizeMade}`} />
