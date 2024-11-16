@@ -141,7 +141,7 @@ const AddProjects = () => {
                                 label="Planned" 
                             />
                             <FormControlLabel 
-                                value="inProgress" 
+                                value="in progress" 
                                 name="projectStatus" 
                                 control={<Radio />} 
                                 label="In Progress" 
@@ -155,7 +155,7 @@ const AddProjects = () => {
                                 label="Completed" 
                             />
                             <FormControlLabel 
-                                value="onHold" 
+                                value="on hold" 
                                 name="projectStatus" 
                                 control={<Radio />} 
                                 label="On Hold" 

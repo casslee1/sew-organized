@@ -223,7 +223,7 @@ const AddFabric = () => {
                                 <MenuItem value='brown'>Brown</MenuItem>
                                 <MenuItem value='multicolour'>Multicolour</MenuItem>
                                 <MenuItem value='rainbow'>Rainbow</MenuItem>
-                                <MenuItem value='blackAndWhite'>Black and White</MenuItem>
+                                <MenuItem value='black and white'>Black and White</MenuItem>
                                 <MenuItem value='other'>Other</MenuItem>
                             </Select>
                         </FormControl>
