@@ -53,28 +53,31 @@ const FabricEntry = () => {
               <ListItemText primary={`Woven or knit: ${fabric.wovenOrKnit}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Solid or print: " />
+              <ListItemText primary={`Fabric Type: ${fabric.fabricType}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Print type: " />
+              <ListItemText primary={`Solid or print: ${fabric.solidOrPrint}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Dominant colour: " />
+              <ListItemText primary={`Print type: ${fabric.printType}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Date of purchase: " />
+              <ListItemText primary={`Dominant colour: ${fabric.dominantColour}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Purchased from: " />
+              <ListItemText primary={`Date of purchase: ${fabric.purchaseDate}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Price: " />
+              <ListItemText primary={`Purchased from: ${fabric.purchasedFrom}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Prewashed: " />
+              <ListItemText primary={`Price: ${fabric.price}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Notes: " />
+              <ListItemText primary={`Prewashed: ${fabric.prewashed}`} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={`Notes: ${fabric.notes}`} />
             </ListItem>
           </List>
         </div>

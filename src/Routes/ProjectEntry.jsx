@@ -42,40 +42,40 @@ const ProjectEntry = () => {
               <ListItemText primary={`Project name: ${project.projectName}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Pattern: " />
+              <ListItemText primary={`Pattern: ${project.pattern}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Fabric: " />
+              <ListItemText primary={`Fabric: ${project.fabric}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Project status: " />
+              <ListItemText primary={`Project status: ${project.projectStatus}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Have all supplies: " />
+              <ListItemText primary={`Have all supplies: ${project.haveAllSupplies}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Deadline: " />
+              <ListItemText primary={`Deadline: ${project.deadline}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Date started: " />
+              <ListItemText primary={`Date started: ${project.startDate}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Date completed: " />
+              <ListItemText primary={`Date completed: ${project.dateCompleted}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Size: " />
+              <ListItemText primary={`Size: ${project.sizeMade}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Length of fabric used: " />
+              <ListItemText primary={`Length of fabric used: ${project.lengthOfFabricUsed}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Thread used: " />
+              <ListItemText primary={`Thread used: ${project.threadUsed}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Fitting notes: " />
+              <ListItemText primary={`Fitting notes: ${project.fittingNotes}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Notes: " />
+              <ListItemText primary={`Notes: ${project.notes}`} />
             </ListItem>
           </List>
         </div>

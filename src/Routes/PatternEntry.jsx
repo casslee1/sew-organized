@@ -41,49 +41,49 @@ const PatternEntry = () => {
               <ListItemText primary={`Pattern company: ${pattern.patternCompany}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Pattern number: " />
+              <ListItemText primary={`Pattern number: ${pattern.patternNumber}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Pattern name: " />
+              <ListItemText primary={`Pattern name: ${pattern.patternName}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Size range: " />
+              <ListItemText primary={`Size range: ${pattern.sizeRange}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Pattern type: " />
+              <ListItemText primary={`Pattern type: ${pattern.patternType}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Print or PDF: " />
+              <ListItemText primary={`Print or PDF: ${pattern.printOrPDF}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Pattern printed: " />
+              <ListItemText primary={`Pattern printed: ${pattern.isPDFPrinted}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Cut out: " />
+              <ListItemText primary={`Cut out: ${pattern.cutOut}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Fabric requirements: " />
+              <ListItemText primary={`Fabric requirements: ${pattern.fabricRequirements}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Notions required: " />
+              <ListItemText primary={`Notions required: ${pattern.notionsRequired}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Purchase date: " />
+              <ListItemText primary={`Purchase date: ${pattern.purchaseDate}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Year released: " />
+              <ListItemText primary={`Year released: ${pattern.yearReleased}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="For woven or knit: " />
+              <ListItemText primary={`For woven or knit: ${pattern.forWovenOrKnit}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Recommended fabric types: " />
+              <ListItemText primary={`Recommended fabric types: ${pattern.recommendedFabrictypes}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Purchased from: " />
+              <ListItemText primary={`Purchased from: ${pattern.purchasedFrom}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Notes: " />
+              <ListItemText primary={`Notes: ${pattern.notes}`} />
             </ListItem>
           </List>
         </div>
