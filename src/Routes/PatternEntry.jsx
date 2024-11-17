@@ -77,7 +77,7 @@ const PatternEntry = () => {
               <ListItemText primary={`For woven or knit: ${pattern.forWovenOrKnit}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Recommended fabric types: ${pattern.recommendedFabrictypes}`} />
+              <ListItemText primary={`Recommended fabric types: ${pattern.recommendedFabricTypes}`} />
             </ListItem>
             <ListItem>
               <ListItemText primary={`Purchased from: ${pattern.purchasedFrom}`} />

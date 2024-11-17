@@ -318,7 +318,7 @@ const AddPatterns = () => {
                         label="Fabric Requirements" 
                         name="fabricRequirements"
                         sx={{width: 380 }}
-                    />{/*Switch to dropdown menu*/}
+                    />
                 </div>
                 <br />
                 <div>
@@ -363,7 +363,6 @@ const AddPatterns = () => {
                 </div>
                 <br />
                 <div>
-                    {/*Maybe switch to dropdown menu*/}
                     <TextField 
                         type="text" 
                         label="Recommended fabric types" 

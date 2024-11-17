@@ -8,7 +8,7 @@ app.use(cors());
 
 export const addProject = (req, res) => {
   const userID = 1;
-  const projectImage = req.file ? req.file.filename : null;
+  const projectImage = req?.file?.filename || null;
   const {
     pattern = null,
     fabric = null,
@@ -25,6 +25,7 @@ export const addProject = (req, res) => {
     notes = null,
     entryDate = null,
   } = req.body;
+
   const con = setUpConnection();
   console.log(req.body);
 
@@ -46,24 +47,28 @@ export const addProject = (req, res) => {
   notes,
   entryDate)
   VALUES 
-  (${userID}, 
-  ${projectImage ? `'${projectImage}'` : "NULL"}, 
-  ${projectName ? `'${projectName}'` : "NULL"},
-  ${pattern ? `'${pattern}'` : "NULL"},
-  ${fabric ? `'${fabric}'` : "NULL"}, 
-  ${projectStatus ? `'${projectStatus}'` : "NULL"}, 
-  ${haveAllSupplies ? `'${haveAllSupplies}'` : "NULL"}, 
-  ${deadline ? `'${deadline}'` : "NULL"}, 
-  ${startDate ? `'${startDate}'` : "NULL"}, 
-  ${dateCompleted ? `'${dateCompleted}'` : "NULL"}, 
-  ${sizeMade ? `'${sizeMade}'` : "NULL"}, 
-  ${lengthOfFabricUsed ? `'${lengthOfFabricUsed}'` : "NULL"}, 
-  ${threadUsed ? `'${threadUsed}'` : "NULL"}, 
-  ${fittingNotes ? `'${fittingNotes}'` : "NULL"}, 
-  ${notes ? `'${notes}'` : "NULL"},
-  ${entryDate ? `'${entryDate}'` : "NULL"})`;
+  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-  con.query(sql, (err, rows) => {
+  const values = [
+    userID,
+    projectImage || null,
+    projectName || null,
+    pattern || null,
+    fabric || null,
+    projectStatus || null,
+    haveAllSupplies || null,
+    deadline || null,
+    startDate || null,
+    dateCompleted || null,
+    sizeMade || null,
+    lengthOfFabricUsed || null,
+    threadUsed || null,
+    fittingNotes || null,
+    notes || null,
+    entryDate || null,
+  ];
+
+  con.query(sql, values, (err, rows) => {
     con.destroy();
     if (!err) {
       res.send(JSON.stringify(rows));
@@ -72,8 +77,6 @@ export const addProject = (req, res) => {
     }
   });
 };
-
-//fetch fabrics
 
 export const getProject = (req, res) => {
   const con = setUpConnection();

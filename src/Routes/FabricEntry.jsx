@@ -41,7 +41,7 @@ const FabricEntry = () => {
               <ListItemText primary={`Name: ${fabric.fabricName}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Length: ${fabric.length}`} />
+              <ListItemText primary={fabric.length ? (`Length: ${fabric.length}`) : ( <> Length: <Link to="../editfabric">edit</Link> </> )} />
             </ListItem>
             <ListItem>
               <ListItemText primary={`Width: ${fabric.width}`} />
