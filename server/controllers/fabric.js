@@ -157,8 +157,10 @@ export const updateFabric = (req, res) => {
     notes,
   } = req.body;
 
-  const con = setUpConnection();
+  //const fibreTypeString = JSON.stringify(fibreType);
 
+  const con = setUpConnection();
+  console.log(fibreType);
   let sql = `UPDATE fabric SET 
     fabricImage = COALESCE(?, fabricImage),
     fabricName = COALESCE(?, fabricName),
@@ -196,10 +198,10 @@ export const updateFabric = (req, res) => {
     id,
   ];
 
-  con.query(sql, values, (err) => {
+  con.query(sql, values, (err, rows) => {
     con.destroy();
     if (!err) {
-      res.send({ message: "Fabric updated successfully" });
+      res.send(JSON.stringify(rows));
     } else {
       console.error("Error updating fabric:", err);
       res.status(500).send({ message: "Server error" });

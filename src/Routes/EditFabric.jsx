@@ -54,7 +54,7 @@ const EditFabric = () => {
                     fabricName: fabricData.fabricName || '',
                     length: fabricData.length || '',
                     width: fabricData.width || '',
-                    fibreType: fabricData.fibreType || [],
+                    fibreType: JSON.parse(fabricData.fibreType) || [],
                     otherFibreType: fabricData.otherFibreType || '',
                     wovenOrKnit: fabricData.wovenOrKnit || '',
                     fabricType: fabricData.fabricType || '',
@@ -75,7 +75,7 @@ const EditFabric = () => {
         fetchFabric();
     }, [id]);
 
-    
+    console.log(fabric.fibreType)
 
       const fibreTypesList = [
         'Cotton',
@@ -98,21 +98,12 @@ const EditFabric = () => {
         const handleSubmit = async (event) => {
             event.preventDefault();
     
-            // let updatedFibreType = [...fabric.fibreType];
-            // if (fabric.otherFibreType) {
-            //     updatedFibreType = updatedFibreType.filter((type) => type !== 'Other'); // Remove placeholder "Other"
-            //     updatedFibreType.push(fabric.otherFibreType); // Add custom fibre
-            // }
-
             const formData = new FormData(event.target);
     
-            formData.set("fibreType", fabric.fibreType.join(',')); 
+            formData.append("fibreType", JSON.stringify(fabric.fibreType)); 
 
             formData.append("userID", 1);
-       
-        
-      
-        
+                          
             try {
                 const response = await axios.put(`http://localhost:8080/fabric/edit/${id}`, formData, {
                     headers: {
@@ -182,9 +173,22 @@ const EditFabric = () => {
                         multiple
                         name="fibreType"
                         value={[fabric.fibreType]}
-                        onChange={(event) => setFabric({...fabric, fibreType: event.target.value})}
+                            onChange={(event) => {
+                                if (fabric.fibreType.includes(event.target.value[1])){
+                                    let newFibreType = fabric.fibreType;
+                                    let index = newFibreType.indexOf(event.target.value[1]);
+                                    newFibreType.splice(index, 1)
+                                    setFabric({...fabric, fibreType: newFibreType})
+                                }
+                                else{
+                                    console.log(event.target.value)
+                                    setFabric({...fabric, fibreType: [...fabric.fibreType, event.target.value[1]]})
+                                }
+                            }
+                        }
+
                         input={<OutlinedInput label="Fibre Type" />}
-                        //renderValue={(selected) => selected.join(', ')}
+                        renderValue={(selected) => selected.join(', ')}
                     >
                         {fibreTypesList.map((fibreType) => (
                             <MenuItem key={fibreType} value={fibreType}>
@@ -334,7 +338,7 @@ const EditFabric = () => {
                 <br />
                 <div>
                     <TextField 
-                        type="double" 
+                        type="number" 
                         label="Price" 
                         name="price"
                         value={fabric.price}
@@ -380,3 +384,12 @@ const EditFabric = () => {
     );
 }
 export default EditFabric;
+
+
+
+
+            // let updatedFibreType = [...fabric.fibreType];
+            // if (fabric.otherFibreType) {
+            //     updatedFibreType = updatedFibreType.filter((type) => type !== 'Other'); // Remove placeholder "Other"
+            //     updatedFibreType.push(fabric.otherFibreType); // Add custom fibre
+            // }
