@@ -25,6 +25,7 @@ const EditFabric = () => {
         length: '',
         width: '',
         fibreType: [], 
+        otherFibreType: '',
         wovenOrKnit: '', 
         fabricType: '',
         solidOrPrint: '', 
@@ -37,9 +38,7 @@ const EditFabric = () => {
         notes: '',
     });
     
-    const [solidOrPrint, setSolidOrPrint] = useState('');
-    const [dominantColour, setDominantColour] = useState('');
-    const [fibreType, setFibreType] = useState([]);
+
    
     useEffect(() => {
         const fetchFabric = async () => {
@@ -55,7 +54,8 @@ const EditFabric = () => {
                     fabricName: fabricData.fabricName || '',
                     length: fabricData.length || '',
                     width: fabricData.width || '',
-                    fibreType: fabricData.fibreType ? JSON.parse(fabricData.fibreType) : [],
+                    fibreType: fabricData.fibreType || [],
+                    otherFibreType: fabricData.otherFibreType || '',
                     wovenOrKnit: fabricData.wovenOrKnit || '',
                     fabricType: fabricData.fabricType || '',
                     solidOrPrint: fabricData.solidOrPrint || '',
@@ -93,24 +93,24 @@ const EditFabric = () => {
         'Ramie', 
         'Other'
       ];
-          
-      const handleFibreChange = (event) => {
-        const {
-          target: { value },
-        } = event;
-        setFibreType(
-          typeof value === 'string' ? value.split(',') : value,
-        )};
-          
+
+
         const handleSubmit = async (event) => {
             event.preventDefault();
     
+            // let updatedFibreType = [...fabric.fibreType];
+            // if (fabric.otherFibreType) {
+            //     updatedFibreType = updatedFibreType.filter((type) => type !== 'Other'); // Remove placeholder "Other"
+            //     updatedFibreType.push(fabric.otherFibreType); // Add custom fibre
+            // }
+
             const formData = new FormData(event.target);
     
+            formData.set("fibreType", fabric.fibreType.join(',')); 
+
             formData.append("userID", 1);
-            formData.append("fibreType", JSON.stringify(fibreType));
-            formData.append("dominantColour", dominantColour);   
-            
+       
+        
       
         
             try {
@@ -180,30 +180,30 @@ const EditFabric = () => {
                     <InputLabel>Fibre Type</InputLabel>
                     <Select
                         multiple
-                        value={fabric.fibreType}
-                        onChange={handleFibreChange}
+                        name="fibreType"
+                        value={[fabric.fibreType]}
+                        onChange={(event) => setFabric({...fabric, fibreType: event.target.value})}
                         input={<OutlinedInput label="Fibre Type" />}
-                        renderValue={(selected) => selected.join(', ')
-                        }
+                        //renderValue={(selected) => selected.join(', ')}
                     >
-                        {fibreTypesList.map((fibreTypesList) => (
-                            <MenuItem key={fibreTypesList} value={fibreTypesList}>
-                            <Checkbox checked={fibreType.includes(fibreTypesList)} />
-                            <ListItemText primary={fibreTypesList} />
+                        {fibreTypesList.map((fibreType) => (
+                            <MenuItem key={fibreType} value={fibreType}>
+                            <Checkbox checked={fabric.fibreType.includes(fibreType)} />
+                            <ListItemText primary={fibreType} />
                             </MenuItem>
                         ))}
                     </Select>
                 </FormControl>                     
                 </div>
                 <br />
-                {fibreType.includes('Other') && (
+                {fabric.fibreType.includes('Other') && (
                 <div>
                     <div>
                     <TextField 
                         type="text" 
                         label="Other Fibre" 
                         name="otherFibreType"
-                        value={fabric.fibreType}
+                        value={fabric.otherFibreType}
                         onChange={(event) => setFabric({...fabric, otherFibreType:event.target.value})}
                         sx={{width: 380 }}
                     />
@@ -239,7 +239,7 @@ const EditFabric = () => {
                         <FormLabel>Solid or Print?</FormLabel>
                         <RadioGroup 
                             value={fabric.solidOrPrint}
-                            onChange={(event) => setSolidOrPrint(event.target.value)}
+                            onChange={(event) => setFabric({...fabric, solidOrPrint:event.target.value})}
                             >
                             
                             <FormControlLabel value="solid" name="solidOrPrint" control={<Radio />} label="Solid" />
@@ -248,7 +248,7 @@ const EditFabric = () => {
                     </FormControl>
                 </div>
                 <br />
-                {solidOrPrint === 'print' && (
+                {fabric.solidOrPrint === 'print' && (
                 <div>
                     <div>
                     {/*maybe switch to checkboxes*/}
@@ -268,9 +268,10 @@ const EditFabric = () => {
                         <FormControl fullWidth>
                             <InputLabel>Dominant Colour</InputLabel>
                             <Select
-                                sx={{width: 380 }}                    
+                                sx={{width: 380 }}   
+                                name="dominantColour"                 
                                 value={fabric.dominantColour}
-                                onChange={(event) => setDominantColour(event.target.value)}                       
+                                onChange={(event) => setFabric({...fabric, dominantColour:event.target.value})}                       
                             >
                                 <MenuItem value='red'>Red</MenuItem>
                                 <MenuItem value='orange'>Orange</MenuItem>
@@ -295,7 +296,7 @@ const EditFabric = () => {
                     </Box>
                 </div>
                 <br />
-                {dominantColour === 'other' && (
+                {fabric.dominantColour === 'other' && (
                 <div>
                     <div>
                     <TextField 
