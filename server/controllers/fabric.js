@@ -135,3 +135,74 @@ export const getFabricByID = (req, res) => {
     }
   });
 };
+
+export const updateFabric = (req, res) => {
+  const { id } = req.params;
+  const fabricImage = req?.file?.filename || null;
+
+  const {
+    fabricName,
+    length,
+    width,
+    fibreType,
+    wovenOrKnit,
+    fabricType,
+    solidOrPrint,
+    printType,
+    dominantColour,
+    purchaseDate,
+    purchasedFrom,
+    price,
+    prewashed,
+    notes,
+  } = req.body;
+
+  const con = setUpConnection();
+
+  let sql = `UPDATE fabric SET 
+    fabricImage = COALESCE(?, fabricImage),
+    fabricName = COALESCE(?, fabricName),
+    length = COALESCE(?, length),
+    width = COALESCE(?, width),
+    fibreType = COALESCE(?, fibreType),
+    wovenOrKnit = COALESCE(?, wovenOrKnit),
+    fabricType = COALESCE(?, fabricType),
+    solidOrPrint = COALESCE(?, solidOrPrint),
+    printType = COALESCE(?, printType),
+    dominantColour = COALESCE(?, dominantColour),
+    purchaseDate = COALESCE(?, purchaseDate),
+    purchasedFrom = COALESCE(?, purchasedFrom),
+    price = COALESCE(?, price),
+    prewashed = COALESCE(?, prewashed),
+    notes = COALESCE(?, notes)
+    WHERE id = ?`;
+
+  const values = [
+    fabricImage,
+    fabricName,
+    length,
+    width,
+    fibreType,
+    wovenOrKnit,
+    fabricType,
+    solidOrPrint,
+    printType,
+    dominantColour,
+    purchaseDate,
+    purchasedFrom,
+    price,
+    prewashed,
+    notes,
+    id,
+  ];
+
+  con.query(sql, values, (err) => {
+    con.destroy();
+    if (!err) {
+      res.send({ message: "Fabric updated successfully" });
+    } else {
+      console.error("Error updating fabric:", err);
+      res.status(500).send({ message: "Server error" });
+    }
+  });
+};

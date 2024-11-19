@@ -4,14 +4,20 @@ import ListItemText from '@mui/material/ListItemText';
 import '../Styles/itemPage.css';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import axios from "axios";
 
 
 const FabricEntry = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [fabric, setFabric] = useState(null);
+
+  const handleEdit = () => {
+    navigate(`/fabric/edit/${fabric.id}`);
+  };
 
   useEffect(() => {
     const fetchFabric = async () => {
@@ -81,9 +87,9 @@ const FabricEntry = () => {
             </ListItem>
           </List>
         </div>
-        <Link to="../editfabric">
-          <Button variant="contained" sx={{background:'#9fdbcd'}}>Edit Fabric</Button>
-        </Link>
+        
+          <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={handleEdit}>Edit Fabric</Button>
+        
       </div>
     );
   };

@@ -84,15 +84,15 @@ const router = createBrowserRouter([
     element: <SampleEntry />,
   },
  {
-    path: "editproject",
+    path: "project/edit/:id",
     element: <EditProject />,
   },
   {
-    path: "editpattern",
+    path: "pattern/edit/:id",
     element: <EditPattern />,
   },
   {
-    path: "editfabric",
+    path: "fabric/edit/:id",
     element: <EditFabric />,
   },
 ]);
