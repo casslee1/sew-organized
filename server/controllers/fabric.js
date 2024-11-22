@@ -144,7 +144,7 @@ export const updateFabric = (req, res) => {
     fabricName,
     length,
     width,
-    fibreType,
+    //fibreType,
     wovenOrKnit,
     fabricType,
     solidOrPrint,
@@ -158,6 +158,12 @@ export const updateFabric = (req, res) => {
   } = req.body;
 
   //const fibreTypeString = JSON.stringify(fibreType);
+
+  let fibreType = req.body.fibreType; // Declare once
+  if (typeof fibreType === "string") {
+    fibreType = JSON.parse(fibreType); // Parse if needed
+  }
+  const fibreTypeString = fibreType;
 
   const con = setUpConnection();
   console.log(fibreType);
@@ -184,7 +190,7 @@ export const updateFabric = (req, res) => {
     fabricName,
     length,
     width,
-    fibreType,
+    fibreTypeString,
     wovenOrKnit,
     fabricType,
     solidOrPrint,

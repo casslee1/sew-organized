@@ -63,7 +63,7 @@ const EditFabric = () => {
                     dominantColour: fabricData.dominantColour || '',
                     purchaseDate: formattedPurchaseDate,
                     purchasedFrom: fabricData.purchasedFrom || '',
-                    price: fabricData.price || '',
+                    price: fabricData.price !== null && fabricData.price !== undefined ? fabricData.price.toString() : '', 
                     prewashed: fabricData.prewashed || '',
                     notes: fabricData.notes || '',
                 });
@@ -172,7 +172,7 @@ const EditFabric = () => {
                     <Select
                         multiple
                         name="fibreType"
-                        value={[fabric.fibreType]}
+                        value={fabric.fibreType}
                             onChange={(event) => {
                                 if (fabric.fibreType.includes(event.target.value[1])){
                                     let newFibreType = fabric.fibreType;
