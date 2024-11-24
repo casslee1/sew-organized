@@ -39,7 +39,7 @@ const Fabric = () => {
           <div>
           <Box sx={{ minWidth: 120}}>
                         <FormControl fullWidth>
-                            <InputLabel>Project Status</InputLabel>
+                            <InputLabel>Sort</InputLabel>
                             <Select
                                 sx={{width: 380 }}
                                 required                    

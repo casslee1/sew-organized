@@ -5,9 +5,15 @@ import PatternCard from '../Components/PatternCard/PatternCard';
 import '../Styles/index.css';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FormControl } from "@mui/material";
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import Box from '@mui/material/Box';
+import MenuItem from '@mui/material/MenuItem';
 
 const Patterns = () => {
   const [patterns, setPatterns] = useState([]);
+  const [filterPatterns, setFilterPatterns] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +36,25 @@ const Patterns = () => {
         </div>
         <div className="pageWrapper">
           <div className='addButtonWrapper'>
+          <div>
+          <Box sx={{ minWidth: 120}}>
+                        <FormControl fullWidth>
+                            <InputLabel>Sort</InputLabel>
+                            <Select
+                                sx={{width: 380 }}
+                                required                    
+                                value={filterPatterns}
+                                onChange={(event) => setFilterPatterns(event.target.value)}                       
+                            >                    
+                                <MenuItem value='patternCompany'>Pattern Company</MenuItem>
+                                <MenuItem value='patternType'>Pattern Type</MenuItem>
+                                <MenuItem value='printOrPDF'>Print or PDF</MenuItem>
+                                <MenuItem value='wovenOrKnit'>Woven or Knit</MenuItem>
+                                <MenuItem value='recommendedfabricType'>Recommended Fabric Type</MenuItem>                              
+                            </Select>
+                        </FormControl>
+                    </Box>
+          </div>
             <Link to="../addpatterns">
               <Button variant="contained" sx={{background:'#9fdbcd'}}>Add New Patterns</Button>
             </Link>
