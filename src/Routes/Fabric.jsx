@@ -7,6 +7,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
+//import TextField from '@mui/material/TextField';
 import '../Styles/index.css';
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -14,6 +15,8 @@ import axios from "axios";
 const Fabric = () => {
   const [fabric, setFabric] = useState([]);
   const [filterFabric, setFilterFabric] = useState('');
+  const [filterOptions, setFilterOptions] = useState([]);
+  const [selectedFilterOption, setSelectedFilterOption] = useState('');
 
   useEffect(() => {
       const fetchData = async () => {
@@ -29,6 +32,23 @@ const Fabric = () => {
       fetchData();
     }, []);
 
+  useEffect(() => {
+    const fetchFilterOptions = async () => {
+      if (!filterFabric) {
+        setFilterOptions([]);
+        return;
+      }
+      try {
+        const response = await axios.get(`http://localhost:8080/fabric/options/${filterFabric}`);
+        setFilterOptions(response.data);
+      }
+      catch(error){
+        console.error("Error fetching filter options", error);
+      }
+    };
+    fetchFilterOptions();
+  }, [filterFabric]);
+
     return (
       <div className='background'>
         <div className="navWrapper">
@@ -37,25 +57,51 @@ const Fabric = () => {
         <div className="pageWrapper">
           <div className='addButtonWrapper'>
           <div>
-          <Box sx={{ minWidth: 120}}>
-                        <FormControl fullWidth>
-                            <InputLabel>Sort</InputLabel>
-                            <Select
-                                sx={{width: 380 }}
-                                required                    
-                                value={filterFabric}
-                                onChange={(event) => setFilterFabric(event.target.value)}                       
-                            >                    
-                                <MenuItem value='length'>Length</MenuItem>
-                                <MenuItem value='fibreType'>Fibre Type</MenuItem>
-                                <MenuItem value='wovenOrKnit'>Woven or Knit</MenuItem>
-                                <MenuItem value='fabricType'>Fabric Type</MenuItem>
-                                <MenuItem value='solidOrPrint'>Solid or Print</MenuItem>
-                                <MenuItem value='dominantColour'>Dominant Colour</MenuItem>                               
-                            </Select>
-                        </FormControl>
-                    </Box>
+            <Box sx={{ minWidth: 120}}>
+              <FormControl fullWidth>
+                <InputLabel>Sort By</InputLabel>
+                <Select
+                  sx={{width: 380 }}
+                  required                    
+                  value={filterFabric}
+                  onChange={(event) => setFilterFabric(event.target.value)}                       
+                >                    
+                  <MenuItem value='length'>Length</MenuItem>
+                  <MenuItem value='fibreType'>Fibre Type</MenuItem>
+                  <MenuItem value='wovenOrKnit'>Woven or Knit</MenuItem>
+                  <MenuItem value='fabricType'>Fabric Type</MenuItem>
+                  <MenuItem value='solidOrPrint'>Solid or Print</MenuItem>
+                  <MenuItem value='dominantColour'>Dominant Colour</MenuItem>                               
+                </Select>
+              </FormControl>
+            </Box>
           </div>
+          <br />
+          <div>
+          {filterFabric && (
+            
+              <Box sx={{ minWidth: 120}}>
+              <FormControl fullWidth>
+                <InputLabel>{`Select ${filterFabric}`}</InputLabel>
+                <Select
+                  sx={{width: 380 }}
+                  required                    
+                  value={selectedFilterOption}
+                  onChange={(event) => setSelectedFilterOption(event.target.value)}                       
+                 > 
+                    {filterOptions.map((option) => (
+                    <MenuItem key={option.id || option.value} value={option.value}>
+                      {option.label || option.value}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+            
+            )
+          }
+          </div>
+                
             <Link to="../addfabric">
               <Button variant="contained" sx={{background:'#9fdbcd'}}>Add New Fabric</Button>
             </Link>
@@ -77,3 +123,16 @@ const Fabric = () => {
   };
   
   export default Fabric;
+
+//   <div>
+//   {filterFabric === 'other' && (
+//     <div>
+//       <TextField 
+//         type="text" 
+//         label="Other Colour" 
+//         name="otherColour"
+//         sx={{width: 380 }}
+//       />
+//     </div>
+//   )}
+// </div>

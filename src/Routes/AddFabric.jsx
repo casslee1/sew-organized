@@ -142,17 +142,18 @@ const AddFabric = () => {
                 </div>
                 <br />
                 {fibreType.includes('Other') && (
-                <div>
                     <div>
-                    <TextField 
-                        type="text" 
-                        label="Other Fibre" 
-                        name="otherFibreType"
-                        sx={{width: 380 }}
-                    />
+                        <div>
+                            <TextField 
+                                type="text" 
+                                label="Other Fibre" 
+                                name="otherFibreType"
+                                sx={{width: 380 }}
+                            />
+                        </div>
+                        <br />
                     </div>
-                    <br />
-                </div>)}
+                )}
                 <div>
                     <FormControl>
                         <FormLabel>Woven or knit?</FormLabel>
@@ -231,17 +232,18 @@ const AddFabric = () => {
                 </div>
                 <br />
                 {dominantColour === 'other' && (
-                <div>
                     <div>
-                    <TextField 
-                        type="text" 
-                        label="Other Colour" 
-                        name="otherColour"
-                        sx={{width: 380 }}
-                    />
+                        <div>
+                        <TextField 
+                            type="text" 
+                            label="Other Colour" 
+                            name="otherColour"
+                            sx={{width: 380 }}
+                        />
+                        </div>
+                        <br />
                     </div>
-                    <br />
-                </div>)}
+                )}
                 <div>
                     <FormLabel>Date of Purchase</FormLabel>
                     <TextField 

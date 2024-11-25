@@ -214,3 +214,35 @@ export const updateFabric = (req, res) => {
     }
   });
 };
+
+export const getFabricOptions = (req, res) => {
+  const { filter } = req.params;
+  const con = setUpConnection();
+
+  let sql;
+  if (filter === "length") {
+    sql = `SELECT DISTINCT length AS value FROM fabric`;
+  } else if (filter === "fibreType") {
+    sql = `SELECT DISTINCT fibreType AS value FROM fabric`;
+  } else if (filter === "wovenOrKnit") {
+    sql = `SELECT DISTINCT wovenOrKnit AS value FROM fabric`;
+  } else if (filter === "fabricType") {
+    sql = `SELECT DISTINCT fabricType AS value FROM fabric`;
+  } else if (filter === "solidOrPrint") {
+    sql = `SELECT DISTINCT solidOrPrint AS value FROM fabric`;
+  } else if (filter === "dominantColour") {
+    sql = `SELECT DISTINCT dominantColour AS value FROM fabric`;
+  } else {
+    return res.status(400).send({ message: "Invalid filter" });
+  }
+
+  con.query(sql, (err, rows) => {
+    con.destroy();
+    if (!err) {
+      res.send(rows.map((row) => ({ value: row.value })));
+    } else {
+      console.error("Error while fetching options:", err);
+      res.status(500).send({ message: "Server error" });
+    }
+  });
+};
