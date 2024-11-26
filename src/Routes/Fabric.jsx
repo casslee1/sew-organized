@@ -17,6 +17,7 @@ const Fabric = () => {
   const [filterFabric, setFilterFabric] = useState('');
   const [filterOptions, setFilterOptions] = useState([]);
   const [selectedFilterOption, setSelectedFilterOption] = useState('');
+  const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
       const fetchData = async () => {
@@ -48,6 +49,17 @@ const Fabric = () => {
     };
     fetchFilterOptions();
   }, [filterFabric]);
+
+  useEffect(() => {
+    if (selectedFilterOption) {
+      const filtered = fabric.filter((item) => 
+        item[filterFabric]?.toString().toLowerCase() === selectedFilterOption.toLowerCase()
+      );
+      setFilteredResults(filtered);
+    } else {
+      setFilteredResults(fabric); 
+    }
+  }, [selectedFilterOption, fabric, filterFabric]);
 
     return (
       <div className='background'>
@@ -107,7 +119,7 @@ const Fabric = () => {
             </Link>
           </div>
           <div className='cardWrapper'>
-          {fabric.map((fabric) => (
+          {filteredResults.map((fabric) => (
             <FabricCard 
                 key={fabric.id} 
                 id={fabric.id}
