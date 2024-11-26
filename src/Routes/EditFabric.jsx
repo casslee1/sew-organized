@@ -45,7 +45,7 @@ const EditFabric = () => {
             try {
                 const response = await axios.get(`http://localhost:8080/fabric/${id}`);
                 const fabricData = response.data;
-
+                console.log(fabricData.fibreType);
                 const formattedPurchaseDate = fabricData.purchaseDate
                 ? new Date(fabricData.purchaseDate).toISOString().split('T')[0]
                 : '';
@@ -99,8 +99,8 @@ const EditFabric = () => {
             event.preventDefault();
     
             const formData = new FormData(event.target);
-    
-            formData.append("fibreType", JSON.stringify(fabric.fibreType)); 
+            console.log(formData);
+            //formData.append("fibreType", (fabric.fibreType)); 
 
             formData.append("userID", 1);
                           
@@ -174,15 +174,16 @@ const EditFabric = () => {
                         name="fibreType"
                         value={fabric.fibreType}
                             onChange={(event) => {
-                                if (fabric.fibreType.includes(event.target.value[1])){
+                                if (fabric.fibreType.includes(event.target.value)){
                                     let newFibreType = fabric.fibreType;
-                                    let index = newFibreType.indexOf(event.target.value[1]);
+                                    let index = newFibreType.indexOf(event.target.value);
                                     newFibreType.splice(index, 1)
                                     setFabric({...fabric, fibreType: newFibreType})
                                 }
                                 else{
                                     console.log(event.target.value)
-                                    setFabric({...fabric, fibreType: [...fabric.fibreType, event.target.value[1]]})
+
+                                    setFabric({...fabric, fibreType: event.target.value})
                                 }
                             }
                         }

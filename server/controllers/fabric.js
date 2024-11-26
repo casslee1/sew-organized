@@ -139,12 +139,12 @@ export const getFabricByID = (req, res) => {
 export const updateFabric = (req, res) => {
   const { id } = req.params;
   const fabricImage = req?.file?.filename || null;
-
+  console.log(req.body);
   const {
     fabricName,
     length,
     width,
-    //fibreType,
+    fibreType,
     wovenOrKnit,
     fabricType,
     solidOrPrint,
@@ -159,14 +159,14 @@ export const updateFabric = (req, res) => {
 
   //const fibreTypeString = JSON.stringify(fibreType);
 
-  let fibreType = req.body.fibreType; // Declare once
-  if (typeof fibreType === "string") {
-    fibreType = JSON.parse(fibreType); // Parse if needed
-  }
-  const fibreTypeString = fibreType;
+  // let fibreType = req.body.fibreType;
+  // if (typeof fibreType === "string") {
+  //   fibreType = JSON.stringify(fibreType);
+  // }
+  // const fibreTypeString = fibreType;
 
   const con = setUpConnection();
-  console.log(fibreType);
+  //console.log(fibreType);
   let sql = `UPDATE fabric SET 
     fabricImage = COALESCE(?, fabricImage),
     fabricName = COALESCE(?, fabricName),
@@ -190,7 +190,7 @@ export const updateFabric = (req, res) => {
     fabricName,
     length,
     width,
-    fibreTypeString,
+    fibreType,
     wovenOrKnit,
     fabricType,
     solidOrPrint,
