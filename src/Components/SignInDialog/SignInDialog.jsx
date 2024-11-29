@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import SignIn from '../sign-in/SignIn'
+//import SignIn from '../sign-in/SignIn'
 import { PropTypes } from "prop-types";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -76,7 +76,7 @@ export default function CustomizedDialogs(props) {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-            <SignIn />
+            {/*<SignIn />*/}
         </DialogContent>
         </BootstrapDialog>
     </React.Fragment>
