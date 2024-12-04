@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-//import SignUp from '../sign-up/SignUp'
+import SignUp from '../SignUp/SignUp'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -59,7 +59,7 @@ export default function CustomizedDialogs() {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-            {/*<SignUp buttonVariant='text'/>*/}
+            <SignUp buttonVariant='text'/>
         </DialogContent>
         </BootstrapDialog>
     </React.Fragment>
