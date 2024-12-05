@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import './App.css'
 import Button from '@mui/material/Button';
-import SignInDialog from '../Components/SignInDialog/SignInDialog'
+//import SignInDialog from '../Components/SignInDialog/SignInDialog'
 /*import SignUp from '../Components/sign-up/SignUp'
 import SignIn from '../Components/sign-in/SignIn'*/
 
@@ -24,9 +24,12 @@ const App = () => {
         <Button variant="contained" sx={{background:'#ff5938'}}>Learn More</Button>
       </Link>
     </div>
-    <div>
+      <Link to="signInUp">
+        <Button variant="contained" sx={{background:'#ff5938'}}>Get Started</Button>
+      </Link>
+    {/* <div>
       <SignInDialog buttonVariant="contained" />
-    </div>
+    </div> */}
   </div> 
  </div>
   );

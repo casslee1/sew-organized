@@ -19,6 +19,7 @@ import SampleEntry from './Routes/SampleEntry';
 import EditPattern from './Routes/EditPattern';
 import EditProject from './Routes/EditProject';
 import EditFabric from './Routes/EditFabric';
+import SignInUp from './Routes/SignInUp';
 import '../src/Styles/index.css';
 
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "home",
     element: <Home />,
+  },
+  {
+    path: "signInUp",
+    element: <SignInUp />,
   },
   {
     path: "fabric",
