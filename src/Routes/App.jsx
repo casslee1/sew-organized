@@ -24,7 +24,7 @@ const App = () => {
         <Button variant="contained" sx={{background:'#ff5938'}}>Learn More</Button>
       </Link>
     </div>
-      <Link to="signInUp">
+      <Link to="signIn">
         <Button variant="contained" sx={{background:'#ff5938'}}>Get Started</Button>
       </Link>
     {/* <div>

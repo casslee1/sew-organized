@@ -4,6 +4,7 @@ import sampleRoutes from "./routes/sampleRoutes.js";
 import fabricRoutes from "./routes/fabricRoutes.js";
 import patternRoutes from "./routes/patternRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import { fileURLToPath } from "url";
 import path from "path";
 
@@ -17,6 +18,7 @@ app.use("/sample", sampleRoutes);
 app.use("/fabric", fabricRoutes);
 app.use("/patterns", patternRoutes);
 app.use("/projects", projectRoutes);
+app.use("/users", userRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.listen(8080, () => {
