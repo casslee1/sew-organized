@@ -57,3 +57,27 @@ export const addUser = (req, res) => {
     });
   });
 };
+
+export const loginUser = (req, res) => {
+  const { email, password } = req.body;
+
+  const con = setUpConnection();
+
+  let sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+  con.query(sql, [email, password], (err, result) => {
+    con.destroy();
+
+    if (err) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Database query failed" });
+    }
+
+    if (result.length > 0) {
+      res.status(200).json({ success: true, data: result[0] });
+    } else {
+      res.status(400).json({ success: false, message: "Invalid credentials" });
+    }
+  });
+};
