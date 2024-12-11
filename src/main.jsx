@@ -22,7 +22,7 @@ import EditFabric from './Routes/EditFabric';
 import SignIn from './Routes/SignIn';
 import SignUp from './Routes/SignUp';
 import '../src/Styles/index.css';
-
+import { UserProvider } from "./Context/UserContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -110,6 +110,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </StrictMode>
 );

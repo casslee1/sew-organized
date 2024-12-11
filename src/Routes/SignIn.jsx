@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { UserContext } from "../Context/UserContext.jsx";
 
 const SignIn = () => {
     const navigate = useNavigate()
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-
+    const { setUserID, setPreferredUnits } = useContext(UserContext);
 
     const handleSignUpClick = () => {
         navigate('/SignUp');
@@ -25,6 +26,9 @@ const SignIn = () => {
             console.log(response.data);
 
             if (response.data.success) {
+                setUserID(response.data.data.userID);
+                setPreferredUnits(response.data.data.preferredUnits)
+
                 alert("Login Successful");
                 navigate("/fabric");  
             } else {

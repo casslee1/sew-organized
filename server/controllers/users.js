@@ -63,7 +63,8 @@ export const loginUser = (req, res) => {
 
   const con = setUpConnection();
 
-  let sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+  let sql =
+    "SELECT userID, preferredUnits FROM users WHERE email = ? AND password = ?";
 
   con.query(sql, [email, password], (err, result) => {
     con.destroy();

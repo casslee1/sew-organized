@@ -7,10 +7,10 @@ const app = express();
 app.use(cors());
 
 export const addFabric = (req, res) => {
-  const userID = 1;
   const fabricImage = req?.file?.filename || null;
 
   const {
+    userID,
     fabricName = null,
     length = null,
     width = null,

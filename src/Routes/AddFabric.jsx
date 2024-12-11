@@ -15,10 +15,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
 import '../Styles/entryForm.css';
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext"; 
 
 
 const AddFabric = () => {
 
+    const { userID } = useContext(UserContext);
     const [solidOrPrint, setSolidOrPrint] = useState('');
     const [dominantColour, setDominantColour] = useState('');
     const [fibreType, setFibreType] = useState([]);
@@ -29,7 +32,7 @@ const AddFabric = () => {
 
         const formData = new FormData(event.target);
 
-        formData.append("userID", 1);
+        formData.append("userID", userID);
         formData.append("fibreType", JSON.stringify(fibreType));
         formData.append("dominantColour", dominantColour);     
 
