@@ -7,9 +7,10 @@ const app = express();
 app.use(cors());
 
 export const addPattern = (req, res) => {
-  const userID = 1;
   const patternImage = req?.file?.filename || null;
+
   const {
+    userID,
     patternCompany = null,
     otherPatternCompany = null,
     patternNumber = null,

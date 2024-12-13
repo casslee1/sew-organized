@@ -7,9 +7,10 @@ const app = express();
 app.use(cors());
 
 export const addProject = (req, res) => {
-  const userID = 1;
   const projectImage = req?.file?.filename || null;
+
   const {
+    userID,
     pattern = null,
     fabric = null,
     projectName = null,

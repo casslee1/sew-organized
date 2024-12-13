@@ -11,9 +11,12 @@ import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
 import axios from "axios";
 import {useState, useEffect} from 'react';
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext"; 
 
 const AddProjects = () => {
 
+    const { userID } = useContext(UserContext);
     const [projectStatus, setProjectStatus] = useState("");
     const [haveAllSupplies, setHaveAllSupplies] = useState(""); 
     const [fabrics, setFabrics] = useState([]);
@@ -38,7 +41,7 @@ const AddProjects = () => {
 
         const formData = new FormData(event.target);
                
-        formData.append("userID", 1);
+        formData.append("userID", userID);
                
         const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
         formData.append("entryDate", entryDate)

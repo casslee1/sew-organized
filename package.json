@@ -10,12 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-amplify/react-native": "^1.1.6",
+    "@aws-amplify/ui-react-native": "^2.2.19",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@fontsource/roboto": "^5.1.0",
     "@mui/icons-material": "^6.1.0",
     "@mui/material": "^6.1.0",
     "@mui/x-date-pickers": "^7.17.0",
+    "@react-native-async-storage/async-storage": "^2.1.0",
+    "@react-native-community/netinfo": "^11.4.1",
     "aws-amplify": "^6.10.2",
     "aws-cli": "^0.0.2",
     "axios": "^1.7.7",
@@ -25,6 +29,9 @@
     "mysql": "^2.18.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-native-get-random-values": "^1.11.0",
+    "react-native-safe-area-context": "^5.0.0",
+    "react-native-url-polyfill": "^2.0.0",
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {

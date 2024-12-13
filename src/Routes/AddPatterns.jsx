@@ -16,9 +16,12 @@ import ListSubheader from '@mui/material/ListSubheader';
 import '../Styles/entryForm.css';
 import Grid from '@mui/material/Grid2';
 import axios from "axios";
-
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext"; 
 
 const AddPatterns = () => {
+
+    const { userID } = useContext(UserContext);
     const [patternCompany, setPatternCompany] = useState('');
     const [patternType, setPatternType] = useState('');
     const [printOrPDF, setPrintOrPDF] = useState('');
@@ -32,7 +35,7 @@ const AddPatterns = () => {
 
         const formData = new FormData(event.target);
 
-       formData.append("userID", 1);
+       formData.append("userID", userID);
        formData.append("patternCompany", patternCompany);
 
        const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
