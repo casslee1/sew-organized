@@ -23,6 +23,10 @@ import SignIn from './Routes/SignIn';
 import SignUp from './Routes/SignUp';
 import '../src/Styles/index.css';
 import { UserProvider } from "./Context/UserContext.jsx";
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
 
 const router = createBrowserRouter([
   {
