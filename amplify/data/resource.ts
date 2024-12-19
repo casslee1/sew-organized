@@ -20,6 +20,27 @@ const schema = a.schema({
       preferredUnits: a.string(),
     })
     .authorization((allow) => [allow.owner()]),
+    Projects: a
+    .model({
+      dateCompleted: a.date(),
+      deadline: a.date(),
+      entryDate: a.datetime(),
+      fabric: a.string(),
+      fittingNotes: a.string(),
+      haveAllSupplies: a.string(),
+      id: a.integer(),
+      lengthOfFabricUsed: a.integer(),
+      notes: a.string(),
+      pattern: a.string(),
+      projectImage: a.string(),
+      projectName: a.string(),
+      projectStatus: a.string(),
+      sizeMade: a.string(),
+      startDate: a.date(),
+      threadUsed: a.string(),
+      userID: a.integer(),
+    })
+    .authorization((allow) => [allow.owner()]),
     //add more tables here
 });
 
