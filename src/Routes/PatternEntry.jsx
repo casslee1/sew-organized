@@ -4,14 +4,19 @@ import ListItemText from '@mui/material/ListItemText';
 import '../Styles/itemPage.css';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import axios from "axios";
 
 const PatternEntry = () => {
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const [pattern, setPattern] = useState(null);
+
+    const handleEdit = () => {
+      navigate(`/pattern/edit/${pattern.id}`);
+    };
   
     useEffect(() => {
       const fetchPattern = async () => {
@@ -87,9 +92,9 @@ const PatternEntry = () => {
             </ListItem>
           </List>
         </div>
-          <Link to="../editpattern">
-            <Button variant="contained" sx={{background:'#9fdbcd'}}>Edit Pattern</Button>
-          </Link>
+          
+            <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={handleEdit}>Edit Pattern</Button>
+          
       </div>
     );
   };
