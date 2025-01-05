@@ -22,6 +22,46 @@ import { UserContext } from "../Context/UserContext";
 const EditPattern = () => {
     const {id} = useParams();
     const navigate = useNavigate();
+    const { userID } = useContext(UserContext);
+
+    const [patternCompany, setPatternCompany] = useState('');
+    const [patternType, setPatternType] = useState('');
+    const [printOrPDF, setPrintOrPDF] = useState('');
+    const [isPDFPrinted, setIsPDFPrinted] = useState('');
+    const [cutOut, setCutOut] = useState('');
+    const [forWovenOrKnit, setForWovenOrKnit] = useState('');
+    const [formKey, setFormKey] = useState(0);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+
+       formData.append("userID", userID);
+       formData.append("patternCompany", patternCompany);
+
+       const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+       formData.append("entryDate", entryDate)
+    
+        try {
+        const response = await axios.put("http://localhost:8080/patterns/add", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+        console.log(response);
+        } catch (error) {
+            console.error("Error uploading pattern:", error);
+        }
+
+        setFormKey((prevKey) => prevKey + 1);
+        setPatternCompany('');
+        setPatternType('');
+        setPrintOrPDF('');
+        setIsPDFPrinted('');
+        setCutOut('');
+        setForWovenOrKnit('');
+      }
 
     return (
         <div className="entryFormWrapper">
