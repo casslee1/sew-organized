@@ -19,12 +19,9 @@ const EditProject = () => {
     const navigate = useNavigate();
     const { userID } = useContext(UserContext);
     
-    const [projectStatus, setProjectStatus] = useState("");
-    const [haveAllSupplies, setHaveAllSupplies] = useState(""); 
     const [fabrics, setFabrics] = useState([]);
-    const [selectedFabric, setSelectedFabric] = useState("");
     const [patterns, setPatterns] = useState([]);
-    const [selectedPattern, setSelectedPattern] = useState("");
+    const [project, setProject] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:8080/fabric/getFabricName")
@@ -37,6 +34,12 @@ const EditProject = () => {
         .then(response => setPatterns(response.data))
         .catch(error => console.error("Error fetching fabrics", error));
     }, []);
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/projects/${id}`)
+            .then(response => setProject(response.data))
+            .catch(error => console.error("Error fetching project", error));
+    }, [id]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -56,13 +59,8 @@ const EditProject = () => {
             })
             console.log(response);
         } catch (error) {
-            console.error("Error uploading fabric:", error);
+            console.error("Error updating project:", error);
         }
-        event.target.reset();
-        setProjectStatus("");
-        setHaveAllSupplies("");
-        setSelectedFabric("");
-        setSelectedPattern("");
     };
     
     return (
@@ -84,6 +82,8 @@ const EditProject = () => {
                         type="text" 
                         label="Project name" 
                         name="projectName"
+                        value={project.projectName || ""}
+                        onChange={(e) => setProject({ ...project, projectName: e.target.value })}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -93,9 +93,9 @@ const EditProject = () => {
                     <TextField
                         select
                         name="pattern"
-                        value={selectedPattern}
+                        value={project.pattern || ""}
                         sx={{ width: 380 }}
-                        onChange={(event) => setSelectedPattern(event.target.value)} 
+                        onChange={(event) => setPatterns({...project, pattern: event.target.value})} 
                     >
                        <MenuItem value="">
                                 <em>Select a fabric</em>
@@ -114,9 +114,9 @@ const EditProject = () => {
                     <TextField
                         select
                         name="fabric"
-                        value={selectedFabric}
+                        value={project.fabric || ""}
                         sx={{ width: 380 }}
-                        onChange={(event) => setSelectedFabric(event.target.value)} 
+                        onChange={(event) => setFabrics({...project, fabric: event.target.value})} 
                     >
                        <MenuItem value="">
                                 <em>Select a fabric</em>
@@ -134,8 +134,8 @@ const EditProject = () => {
                     <FormControl>
                         <FormLabel>Project Status</FormLabel>
                         <RadioGroup 
-                        value = {projectStatus}
-                        onChange={(e) => setProjectStatus(e.target.value)}
+                        value={project.projectStatus || ""}
+                        onChange={(e) => setProject({...project, projectStatus: e.target.value})}
                         >
                         <Grid container rowSpacing={1} columnSpacing={6}>
                         <Grid container xs={6} direction="column" >
@@ -175,8 +175,8 @@ const EditProject = () => {
                     <FormControl>
                         <FormLabel>Have all supplies?</FormLabel> {/*If no include way to make list of supplies needed */}
                         <RadioGroup
-                            value = {haveAllSupplies}
-                            onChange={(e) => setHaveAllSupplies(e.target.value)}
+                            value={project.haveAllSupplies || ""}
+                            onChange={(e) => setProject({...project, haveAllSupplies: e.target.value})}
                         >
                             <FormControlLabel 
                                 value="yes" 
@@ -199,6 +199,8 @@ const EditProject = () => {
                     <TextField 
                         type="date"
                         name="deadline"
+                        value={project.deadline || ""}
+                        onChange={(e) => setProject({...project, deadline: e.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -208,6 +210,8 @@ const EditProject = () => {
                     <TextField 
                         type="date"
                         name="startDate"
+                        value={project.startDate || ""}
+                        onChange={(e) => setProject({...project, startDate: e.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -217,6 +221,8 @@ const EditProject = () => {
                     <TextField 
                         type="date"
                         name="dateCompleted"
+                        value={project.dateCompleted || ""}
+                        onChange={(e) => setProject({...project, dateCompleted: e.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -226,6 +232,8 @@ const EditProject = () => {
                         type="text" 
                         label="Size made" 
                         name="sizeMade"
+                        value={project.sizeMade || ""}
+                        onChange={(e) => setProject({...project, sizeMade: e.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -235,6 +243,8 @@ const EditProject = () => {
                         type="text" 
                         label="Length of fabric used" 
                         name="lengthOfFabricUsed"
+                        value={project.lengthOfFabricUsed || ""}
+                        onChange={(e) => setProject({...project, lengthOfFabricUsed: e.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -244,6 +254,8 @@ const EditProject = () => {
                         type="text" 
                         label="Thread used" 
                         name="threadUsed"
+                        value={project.threadUsed || ""}
+                        onChange={(e) => setProject({...project, threadUsed: e.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -253,6 +265,8 @@ const EditProject = () => {
                         multiline
                         label="Fitting Notes" 
                         name="fittingNotes" 
+                        value={project.fittingNotes || ""}
+                        onChange={(e) => setProject({...project, fittingNotes: e.target.value})}
                         rows={4}
                         sx={{width: 380 }}
                     />
@@ -263,6 +277,8 @@ const EditProject = () => {
                         multiline
                         label="Notes" 
                         name="notes" 
+                        value={project.notes || ""}
+                        onChange={(e) => setProject({...project, notes: e.target.value})}
                         rows={4}
                         sx={{width: 380 }}
                     />
