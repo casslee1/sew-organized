@@ -113,3 +113,73 @@ export const getProjectByID = (req, res) => {
     }
   });
 };
+
+export const updateProject = (req, res) => {
+  const { id } = req.params;
+  const projectImage = req?.file?.filename || null;
+
+  const {
+    pattern,
+    fabric,
+    projectName,
+    projectStatus,
+    haveAllSupplies,
+    deadline,
+    startDate,
+    dateCompleted,
+    sizeMade,
+    lengthOfFabricUsed,
+    threadUsed,
+    fittingNotes,
+    notes,
+  } = req.body;
+
+  const con = setUpConnection();
+  console.log(req.body);
+
+  let sql = `UPDATE projects SET
+    projectImage = ?,
+    projectName = ?, 
+    pattern = ?,
+    fabric = ?,
+    projectStatus = ?, 
+    haveAllSupplies = ?, 
+    deadline = ?, 
+    startDate = ?, 
+    dateCompleted = ?, 
+    sizeMade = ?, 
+    lengthOfFabricUsed = ?, 
+    threadUsed = ?, 
+    fittingNotes = ?, 
+    notes = ?
+  WHERE id = ?
+  `;
+
+  const values = [
+    projectImage,
+    projectName,
+    pattern,
+    fabric,
+    projectStatus,
+    haveAllSupplies,
+    deadline,
+    startDate,
+    dateCompleted,
+    sizeMade,
+    lengthOfFabricUsed,
+    threadUsed,
+    fittingNotes,
+    notes,
+    id,
+  ];
+
+  con.query(sql, values, (err, rows) => {
+    con.destroy();
+    if (!err) {
+      res.send(JSON.stringify(rows));
+    } else {
+      console.log("Error updating project.", err);
+      res.status(500).send({ message: "Error updating project", error: err });
+    }
+  });
+};

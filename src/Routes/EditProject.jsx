@@ -23,6 +23,11 @@ const EditProject = () => {
     const [patterns, setPatterns] = useState([]);
     const [project, setProject] = useState([]);
 
+    const formatDate = (dateString) => {
+        if (!dateString) return ""; 
+        return dateString.split("T")[0] || dateString.split(" ")[0]; 
+    };
+
     useEffect(() => {
         axios.get("http://localhost:8080/fabric/getFabricName")
         .then(response => setFabrics(response.data))
@@ -37,7 +42,18 @@ const EditProject = () => {
 
     useEffect(() => {
         axios.get(`http://localhost:8080/projects/${id}`)
-            .then(response => setProject(response.data))
+            .then(response => {
+                const data = response.data;
+
+                const formattedProject = {
+                    ...data,
+                    deadline: formatDate(data.deadline),
+                    startDate: formatDate(data.startDate),
+                    dateCompleted: formatDate(data.dateCompleted), 
+                };
+
+                setProject(formattedProject);
+    })
             .catch(error => console.error("Error fetching project", error));
     }, [id]);
 
@@ -48,15 +64,14 @@ const EditProject = () => {
                
         formData.append("userID", userID);
                
-        const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        formData.append("entryDate", entryDate)
 
         try {
-            const response = await axios.put("http://localhost:8080/projects/add", formData, {
+            const response = await axios.put(`http://localhost:8080/projects/edit/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
             })
+            navigate(`/projectentry/${id}`);
             console.log(response);
         } catch (error) {
             console.error("Error updating project:", error);

@@ -15,10 +15,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
 import '../Styles/entryForm.css';
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext"; 
 
 const EditFabric = () => {
     const {id} = useParams();
     const navigate = useNavigate();
+    const { userID } = useContext(UserContext);
 
     const [fabric, setFabric] = useState({
         fabricName: '',
@@ -102,7 +105,7 @@ const EditFabric = () => {
             console.log(formData);
             //formData.append("fibreType", (fabric.fibreType)); 
 
-            formData.append("userID", 1);
+            formData.append("userID", userID);
                           
             try {
                 const response = await axios.put(`http://localhost:8080/fabric/edit/${id}`, formData, {
@@ -115,8 +118,6 @@ const EditFabric = () => {
             } catch (error) {
                 console.error("Error uploading fabric:", error);
             }
-    
-         
         };
 
     return (
