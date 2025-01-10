@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import '../Styles/itemPage.css';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
@@ -87,6 +87,12 @@ const ProjectEntry = () => {
         
           <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={handleEdit}>Edit Project</Button>
         
+          <Link to={"/projects/"}>
+            <Button variant="contained" sx={{background:'#9fdbcd'}}>Cancel</Button>
+          </Link>
+
+          <Button variant="contained" sx={{background:'#9fdbcd'}}>Delete</Button>
+
       </div>
     );
   };

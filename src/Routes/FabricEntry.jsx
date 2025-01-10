@@ -90,6 +90,11 @@ const FabricEntry = () => {
         
           <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={handleEdit}>Edit Fabric</Button>
         
+          <Link to={"/fabric/"}>
+            <Button variant="contained" sx={{background:'#9fdbcd'}}>Cancel</Button>
+          </Link>
+
+          <Button variant="contained" sx={{background:'#9fdbcd'}}>Delete</Button>
       </div>
     );
   };

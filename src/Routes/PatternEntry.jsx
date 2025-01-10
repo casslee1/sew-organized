@@ -93,8 +93,13 @@ const PatternEntry = () => {
           </List>
         </div>
           
-            <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={handleEdit}>Edit Pattern</Button>
-          
+          <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={handleEdit}>Edit Pattern</Button>
+
+          <Link to={"/patterns/"}>
+            <Button variant="contained" sx={{background:'#9fdbcd'}}>Cancel</Button>
+          </Link>
+
+          <Button variant="contained" sx={{background:'#9fdbcd'}}>Delete</Button>
       </div>
     );
   };
