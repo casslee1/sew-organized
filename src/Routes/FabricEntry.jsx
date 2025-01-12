@@ -36,6 +36,19 @@ const FabricEntry = () => {
     return <div>Fabric not found</div>;
   }
 
+  const deleteEntry = async () => {
+    if (window.confirm("Are you sure you want to delete this fabric?")) {
+      try {
+        await axios.delete(`http://localhost:8080/fabric/${fabric.id}`);
+        alert("Fabric deleted successfully");
+        navigate("/fabric");
+      } catch (error) {
+        console.error("error deleting fabric: ", error);
+        alert("Failed to delete fabric. Please try  again.");
+      }
+    }
+  };
+
     return (
       <div className='itemEntryWrapper'>
         <div className='topImageWrapper'>
@@ -94,7 +107,7 @@ const FabricEntry = () => {
             <Button variant="contained" sx={{background:'#9fdbcd'}}>Cancel</Button>
           </Link>
 
-          <Button variant="contained" sx={{background:'#9fdbcd'}}>Delete</Button>
+          <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={deleteEntry}>Delete</Button>
       </div>
     );
   };

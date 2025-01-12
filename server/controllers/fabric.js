@@ -246,3 +246,24 @@ export const getFabricOptions = (req, res) => {
     }
   });
 };
+
+export const deleteFabric = (req, res) => {
+  const { id } = req.params;
+  const con = setUpConnection();
+
+  const sql = `DELETE FROM fabric WHERE id = ?`;
+
+  con.query(sql, [id], (err, rows) => {
+    con.destroy();
+    if (!err) {
+      if (rows.affectedRows > 0) {
+        res.send({ message: "Fabric deleted successfully" });
+      } else {
+        res.status(404).send({ message: "Fabric not found" });
+      }
+    } else {
+      console.error("Error while deleting fabric:", err);
+      res.status(500).send({ message: "Server error" });
+    }
+  });
+};

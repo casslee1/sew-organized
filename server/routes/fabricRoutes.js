@@ -6,6 +6,7 @@ import {
   getFabricName,
   updateFabric,
   getFabricOptions,
+  deleteFabric,
 } from "../controllers/fabric.js";
 import multer from "multer";
 import { storage } from "../utils/storage.js";
@@ -20,5 +21,6 @@ router.get("/getFabricName", getFabricName);
 router.get("/:id", getFabricByID);
 router.put("/edit/:id", upload.single("fabricImage"), updateFabric);
 router.get("/options/:filter", getFabricOptions);
+router.delete("/:id", deleteFabric);
 
 export default router;
