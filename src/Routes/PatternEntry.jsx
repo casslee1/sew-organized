@@ -35,6 +35,19 @@ const PatternEntry = () => {
       return <div>Pattern not found</div>;
     }
 
+    const deleteEntry = async() => {
+      if (window.confirm("Are you sure you want to delete this pattern?")) {
+        try {
+          await axios.delete(`http://localhost:8080/patterns/${pattern.id}`);
+          alert("Pattern deleted successfully");
+          navigate("/patterns");
+        } catch (error) {
+          console.error("error deleting pattern: ", error);
+          alert("Failed to delete pattern. Please try again.");
+        }
+      }
+    };
+
     return (
       <div className='itemEntryWrapper'>
         <div className='topImageWrapper'>
@@ -99,7 +112,7 @@ const PatternEntry = () => {
             <Button variant="contained" sx={{background:'#9fdbcd'}}>Cancel</Button>
           </Link>
 
-          <Button variant="contained" sx={{background:'#9fdbcd'}}>Delete</Button>
+          <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={deleteEntry}>Delete</Button>
       </div>
     );
   };

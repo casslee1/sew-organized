@@ -145,3 +145,24 @@ export const getPatternByID = (req, res) => {
     }
   });
 };
+
+export const deletePattern = (req, res) => {
+  const { id } = req.params;
+  const con = setUpConnection();
+
+  const sql = `DELETE FROM patterns WHERE id = ?`;
+
+  con.query(sql, [id], (err, rows) => {
+    con.destroy();
+    if (!err) {
+      if (rows.affectedRows > 0) {
+        res.send({ message: "Pattern deleted successfully" });
+      } else {
+        res.status(404).send({ message: "Pattern not found" });
+      }
+    } else {
+      console.error("Error while deleting pattern:", err);
+      res.status(500).send({ message: "Server error" });
+    }
+  });
+};

@@ -44,7 +44,7 @@ const FabricEntry = () => {
         navigate("/fabric");
       } catch (error) {
         console.error("error deleting fabric: ", error);
-        alert("Failed to delete fabric. Please try  again.");
+        alert("Failed to delete fabric. Please try again.");
       }
     }
   };
