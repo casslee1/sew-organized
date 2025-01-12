@@ -183,3 +183,24 @@ export const updateProject = (req, res) => {
     }
   });
 };
+
+export const deleteProject = (req, res) => {
+  const { id } = req.params;
+  const con = setUpConnection();
+
+  const sql = `DELETE FROM projects WHERE id = ?`;
+
+  con.query(sql, [id], (err, rows) => {
+    con.destroy();
+    if (!err) {
+      if (rows.affectedRows > 0) {
+        res.send({ message: "Project deleted successfully" });
+      } else {
+        res.status(404).send({ message: "Project not found" });
+      }
+    } else {
+      console.error("Error while deleting project:", err);
+      res.status(500).send({ message: "Server error" });
+    }
+  });
+};

@@ -35,6 +35,18 @@ const ProjectEntry = () => {
     return <div>Project not found</div>;
   }
 
+  const deleteEntry = async() => {
+    if (window.confirm("Are you sure you want to delete this project?")) {
+      try {
+        await axios.delete(`http://localhost:8080/projects/${project.id}`);
+        alert("Project deleted successfully");
+        navigate("/projects");
+      } catch (error) {
+        console.error("error deleting project: ", error);
+        alert("Failed to delete project. Please try again.");
+      }
+    }
+  };
 
     return (
       <div className='itemEntryWrapper'>
@@ -91,7 +103,7 @@ const ProjectEntry = () => {
             <Button variant="contained" sx={{background:'#9fdbcd'}}>Cancel</Button>
           </Link>
 
-          <Button variant="contained" sx={{background:'#9fdbcd'}}>Delete</Button>
+          <Button variant="contained" sx={{background:'#9fdbcd'}} onClick={deleteEntry}>Delete</Button>
 
       </div>
     );
