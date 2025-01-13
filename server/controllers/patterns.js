@@ -146,6 +146,96 @@ export const getPatternByID = (req, res) => {
   });
 };
 
+export const updatePattern = (req, res) => {
+  const { id } = req.params;
+  const patternImage = req?.file?.filename || null;
+
+  const {
+    patternCompany,
+    otherPatternCompany,
+    patternNumber,
+    patternName,
+    sizeRange,
+    patternType,
+    otherPatternType,
+    printOrPDF,
+    isPDFPrinted,
+    cutOut,
+    sizeCutOut,
+    fabricRequirements,
+    notionsRequired,
+    purchaseDate,
+    yearReleased,
+    forWovenOrKnit,
+    recommendedFabricTypes,
+    purchasedFrom,
+    notes,
+    entryDate,
+  } = req.body;
+
+  const con = setUpConnection();
+  console.log(req.body);
+
+  let sql = `UPDATE patterns SET
+    patternImage = ?,
+    patternCompany = ?,
+    otherPatternCompany = ?,
+    patternNumber = ?,
+    patternName = ?,
+    sizeRange = ?,
+    patternType = ?,
+    otherPatternType = ?,
+    printOrPDF = ?,
+    isPDFPrinted = ?,
+    cutOut = ?,
+    sizeCutOut = ?,
+    fabricRequirements = ?,
+    notionsRequired = ?,
+    purchaseDate = ?,
+    yearReleased = ?,
+    forWovenOrKnit = ?,
+    recommendedFabricTypes = ?,
+    purchasedFrom = ?,
+    notes = ?,
+    entryDate = ? 
+  WHERE id = ?
+  `;
+
+  const values = [
+    patternImage || null,
+    patternCompany || null,
+    otherPatternCompany || null,
+    patternNumber || null,
+    patternName || null,
+    sizeRange || null,
+    patternType || null,
+    otherPatternType || null,
+    printOrPDF || null,
+    isPDFPrinted || null,
+    cutOut || null,
+    sizeCutOut || null,
+    fabricRequirements || null,
+    notionsRequired || null,
+    purchaseDate || null,
+    yearReleased || null,
+    forWovenOrKnit || null,
+    recommendedFabricTypes || null,
+    purchasedFrom || null,
+    notes || null,
+    entryDate || null,
+  ];
+
+  con.query(sql, values, (err, rows) => {
+    con.destroy();
+    if (!err) {
+      res.send(JSON.stringify(rows));
+    } else {
+      console.log("Error updating pattern.", err);
+      res.status(500).send({ message: "Error updating pattern ", error: err });
+    }
+  });
+};
+
 export const deletePattern = (req, res) => {
   const { id } = req.params;
   const con = setUpConnection();

@@ -16,7 +16,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import '../Styles/entryForm.css';
 import Grid from '@mui/material/Grid2';
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext"; 
 
 const EditPattern = () => {
@@ -24,50 +24,54 @@ const EditPattern = () => {
     const navigate = useNavigate();
     const { userID } = useContext(UserContext);
 
-    const [patternCompany, setPatternCompany] = useState('');
-    const [patternType, setPatternType] = useState('');
-    const [printOrPDF, setPrintOrPDF] = useState('');
-    const [isPDFPrinted, setIsPDFPrinted] = useState('');
-    const [cutOut, setCutOut] = useState('');
-    const [forWovenOrKnit, setForWovenOrKnit] = useState('');
-    const [formKey, setFormKey] = useState(0);
+    const [pattern, setPattern] = useState([]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const formatDate = (dateString) => {
+        if (!dateString) return ""; 
+        return dateString.split("T")[0] || dateString.split(" ")[0]; 
+};
 
-        const formData = new FormData(event.target);
+useEffect(() => {
+    axios.get(`http://localhost:8080/patterns/${id}`)
+    .then(response => {
+        const data = response.data;
 
-       formData.append("userID", userID);
-       formData.append("patternCompany", patternCompany);
+        const formattedPattern = {
+            ...data,
+            
+            purchaseDate: formatDate(data.dateCompleted), 
+        };
 
-       const entryDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
-       formData.append("entryDate", entryDate)
+        setPattern(formattedPattern);
+})
+    .catch(error => console.error("Error fetching project", error));
+}, [id]);
+
+const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    formData.append("userID", userID);
     
-        try {
-        const response = await axios.put("http://localhost:8080/patterns/add", formData, {
+    try {
+        const response = await axios.put(`http://localhost:8080/patterns/edit/${id}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             }
         })
+        navigate(`/patternentry/${id}`);
         console.log(response);
         } catch (error) {
-            console.error("Error uploading pattern:", error);
-        }
-
-        setFormKey((prevKey) => prevKey + 1);
-        setPatternCompany('');
-        setPatternType('');
-        setPrintOrPDF('');
-        setIsPDFPrinted('');
-        setCutOut('');
-        setForWovenOrKnit('');
-      }
+            console.error("Error updating pattern:", error);
+    }
+};
 
     return (
         <div className="entryFormWrapper">
             <h1>Edit a Pattern</h1>
             <Box sx={{ p: 2, border: '1px solid grey', bgcolor: '#faf7f0' }}>
-            <form key={formKey} onSubmit={handleSubmit} encType="multipart/form-data">
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <FormLabel>Add image</FormLabel>
                     <TextField 
@@ -84,8 +88,8 @@ const EditPattern = () => {
                             <Select
                                 sx={{width: 380 }}
                                 required={true}                    
-                                value={patternCompany}
-                                onChange={(event) => setPatternCompany(event.target.value)}                       
+                                value={pattern.patternCompany || ""}
+                                onChange={(event) => setPattern({ ...pattern, patternCompany: event.target.value })}                       
                             >
                                 <ListSubheader>A</ListSubheader>
                                 <MenuItem value='Advance'>Advance</MenuItem>
@@ -185,13 +189,15 @@ const EditPattern = () => {
                     </Box>
                 </div>
                 <br />
-                {patternCompany === 'other' && (
+                {pattern.patternCompany === 'other' && (
                 <div>
                     <div>
                     <TextField 
                         type="text" 
                         label="Other Pattern Company" 
                         name="otherPatternCompany"
+                        value={pattern.otherPatternCompany || ""}
+                        onChange={(event) => setPattern({...pattern, otherPatternCompany: event.target.value})}
                         sx={{width: 380 }}
                     />
                     </div>
@@ -202,6 +208,8 @@ const EditPattern = () => {
                         type="text" 
                         label="Pattern Number" 
                         name="patternNumber"
+                        value={pattern.patternNumber || ""}
+                        onChange={(event) => setPattern({...pattern, patternNumber: event.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -211,6 +219,8 @@ const EditPattern = () => {
                     type="text" 
                     label="Pattern Name" 
                     name="patternName"
+                    value={pattern.patternName || ""}
+                    onChange={(event) => setPattern({...pattern, patternName: event.target.value})}
                     sx={{width: 380 }}
                     />
                 </div>
@@ -220,6 +230,8 @@ const EditPattern = () => {
                         type="text" 
                         label="Size Range" 
                         name="sizeRange"
+                        value={pattern.sizeRange || ""}
+                        onChange={(event) => setPattern({...pattern, sizeRange: event.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -227,8 +239,8 @@ const EditPattern = () => {
                 <div>
                     <FormLabel>Pattern Type</FormLabel>
                     <FormGroup 
-                        value={patternType}
-                        onChange={(event) => setPatternType(event.target.value)}  
+                        value={pattern.patternType || ""}
+                        onChange={(event) => setPattern({ ...pattern, patternType: event.target.value })}  
                     > 
                     <Grid container spacing={2} >
                     <Grid container  xs={6} direction="column" >
@@ -251,13 +263,15 @@ const EditPattern = () => {
                     </FormGroup>
                 </div>
                 <br />
-                {patternType === 'other' && (
+                {pattern.patternType === 'other' && (
                 <div>
                     <div>
                     <TextField 
                         type="text" 
                         label="Other Pattern Type" 
                         name="otherPatternType"
+                        value={pattern.otherPatternType || ""}
+                        onChange={(event) => setPattern({...pattern, otherPatternType: event.target.value})}
                         sx={{width: 380 }}
                     />
                     </div>
@@ -267,8 +281,8 @@ const EditPattern = () => {
                     <FormControl>
                         <FormLabel>Print or PDF?</FormLabel>
                         <RadioGroup 
-                            value={printOrPDF}
-                            onChange={(event) => setPrintOrPDF(event.target.value)}
+                            value={pattern.printOrPDF || ""}
+                            onChange={(event) => setPattern({ ...pattern, printOrPDF: event.target.value })}
                         >
                             <FormControlLabel value="print" name="printOrPDF" control={<Radio />} label="Print" />
                             <FormControlLabel value="PDF" name="printOrPDF" control={<Radio />} label="PDF" />
@@ -276,14 +290,14 @@ const EditPattern = () => {
                     </FormControl>
                 </div>
                 <br />
-                {printOrPDF === 'PDF' && (
+                {pattern.printOrPDF === 'PDF' && (
                 <div>
                     <div>
                         <FormControl>
                             <FormLabel>Is PDF printed?</FormLabel>
                             <RadioGroup
-                                 value={isPDFPrinted}
-                                 onChange={(event) => setIsPDFPrinted(event.target.value)}
+                                 value={pattern.isPDFPrinted || ""}
+                                 onChange={(event) => setPattern({ ...pattern, isPDFPrinted: event.target.value })}
                             >
                                 <FormControlLabel value="printed" name="isPDFPrinted" control={<Radio />} label="Yes" />
                                 <FormControlLabel value="not printed" name="isPDFPrinted" control={<Radio />} label="No" />
@@ -296,8 +310,8 @@ const EditPattern = () => {
                     <FormControl>
                         <FormLabel>Cut out?</FormLabel>
                         <RadioGroup
-                            value={cutOut}
-                            onChange={(event) => setCutOut(event.target.value)}
+                            value={pattern.cutOut || ""}
+                            onChange={(event) => setPattern({ ...pattern, cutOut: event.target.value })}
                         >
                             <FormControlLabel value="cut out" name="cutOut" control={<Radio />} label="Yes" />
                             <FormControlLabel value="not cut out" name="cutOut" control={<Radio />} label="No" />
@@ -305,13 +319,15 @@ const EditPattern = () => {
                     </FormControl>
                 </div>
                 <br />
-                {cutOut === 'cut out' && (
+                {pattern.cutOut === 'cut out' && (
                     <div>
                         <div>
                         <TextField 
                             type="text" 
                             label="Size cut out?"
                             name="sizeCutOut"
+                            value={pattern.sizeCutOut || ""}
+                            onChange={(event) => setPattern({...pattern, sizeCutOut: event.target.value})}
                             sx={{width: 380 }}
                         />
                     </div>
@@ -322,6 +338,8 @@ const EditPattern = () => {
                         type="text" 
                         label="Fabric Requirements" 
                         name="fabricRequirements"
+                        value={pattern.fabricRequirements || ""}
+                        onChange={(event) => setPattern({...pattern, fabricRequirements: event.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -331,6 +349,8 @@ const EditPattern = () => {
                         type="text" 
                         label="Notions Required" 
                         name="notionsRequired"
+                        value={pattern.notionsRequired || ""}
+                        onChange={(event) => setPattern({...pattern, notionsRequired: event.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -340,6 +360,8 @@ const EditPattern = () => {
                     <TextField 
                         type="date" 
                         name="purchaseDate"
+                        value={pattern.purchaseDate || ""}
+                        onChange={(event) => setPattern({...pattern, purchaseDate: event.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -349,6 +371,8 @@ const EditPattern = () => {
                     <TextField 
                         type="number" 
                         name="yearReleased"
+                        value={pattern.yearReleased || ""}
+                        onChange={(event) => setPattern({...pattern, yearReleased: event.target.value})}
                         sx={{width: 380 }}
                     />
                 
@@ -358,8 +382,8 @@ const EditPattern = () => {
                     <FormControl>
                         <FormLabel>For woven or knit?</FormLabel>
                         <RadioGroup
-                            value={forWovenOrKnit}
-                            onChange={(event) => setForWovenOrKnit(event.target.value)}
+                            value={pattern.forWovenOrKnit || ""}
+                            onChange={(event) => setPattern({ ...pattern, forWovenOrKnit: event.target.value })}
                         >
                             <FormControlLabel value="woven" name="forWovenOrKnit" control={<Radio />} label="Woven" />
                             <FormControlLabel value="knit" name="forWovenOrKnit" control={<Radio />} label="Knit" />
@@ -372,6 +396,8 @@ const EditPattern = () => {
                         type="text" 
                         label="Recommended fabric types" 
                         name="recommendedFabricTypes"
+                        value={pattern.recommendedFabricTypes || ""}
+                        onChange={(event) => setPattern({...pattern, recommendedFabricTypes: event.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -381,6 +407,8 @@ const EditPattern = () => {
                         type="text" 
                         label="Purchased From" 
                         name="purchasedFrom"
+                        value={pattern.purchasedFrom || ""}
+                        onChange={(event) => setPattern({...pattern, purchasedFrom: event.target.value})}
                         sx={{width: 380 }}
                     />
                 </div>
@@ -391,6 +419,8 @@ const EditPattern = () => {
                         sx={{width: 380 }}
                         label="Notes" 
                         name="notes" 
+                        value={pattern.notes || ""}
+                        onChange={(event) => setPattern({...pattern, notes: event.target.value})}
                         rows={4}>
                     </TextField>
                 </div>
